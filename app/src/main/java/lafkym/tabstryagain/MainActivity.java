@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
+import org.w3c.dom.Text;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -87,6 +88,14 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                         TextView lt = (TextView)findViewById(R.id.lT);
                         TextView bm = (TextView)findViewById(R.id.bM);
                         TextView ns = (TextView)findViewById(R.id.nS);
+                        TextView ux = (TextView)findViewById(R.id.uX);
+                        TextView uy = (TextView)findViewById(R.id.uY);
+                        TextView br2sr = (TextView)findViewById(R.id.b2sEff);
+                        TextView boocurr = (TextView)findViewById(R.id.booCurr);
+                        TextView s1 = (TextView)findViewById(R.id.ls1);
+                        TextView s2 = (TextView)findViewById(R.id.ls2);
+
+
                         TextView k1v = (TextView)findViewById(R.id.k1V);
                         TextView k2v = (TextView)findViewById(R.id.k2V);
 
@@ -96,6 +105,13 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                             lt.setText(messages[2]);
                             bm.setText(messages[3]);
                             ns.setText(messages[4]);
+                            ux.setText(messages[5]);
+                            uy.setText(messages[6]);
+                            br2sr.setText(messages[7]);
+                            boocurr.setText(messages[8]);
+                            s1.setText(messages[9]);
+                            s2.setText(messages[10]);
+
                         } else if (messages[0].toString().equals("linac")){
                             Log.d("UPDATING","Linac window updating");
                             k1v.setTextColor(getResources().getColor(R.color.good_PV));
