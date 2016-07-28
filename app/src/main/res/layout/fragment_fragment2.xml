@@ -13,7 +13,7 @@
         android:id="@+id/textView5"
         android:textColor="@color/title_text"
         android:paddingLeft="20dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/textView17"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -22,10 +22,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Klystron 2:        "
         android:id="@+id/textView6"
-        android:layout_below="@+id/textView5"
-        android:layout_alignParentStart="true"
         android:textColor="@color/title_text"
-        android:paddingLeft="20dp" />
+        android:paddingLeft="20dp"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,4 +50,126 @@
         android:layout_alignEnd="@+id/k1V"
         android:layout_toEndOf="@+id/textView6"
         android:paddingRight="20dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Gun Bias:"
+        android:id="@+id/textView17"
+        android:textColor="@color/title_text"
+        android:paddingLeft="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/k1V" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="                      "
+        android:id="@+id/gB"
+        android:textAlignment="textEnd"
+        android:paddingRight="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/k1V"
+        android:layout_toEndOf="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-----------Linac Magnets-----------"
+        android:id="@+id/textView18"
+        android:textAlignment="center"
+        android:paddingBottom="10dp"
+        android:textColor="@color/title_text"
+        android:layout_marginTop="17dp"
+        android:layout_below="@+id/textView6"
+        android:layout_alignStart="@+id/textView23" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="   S   "
+        android:id="@+id/linS"
+        android:layout_below="@+id/textView18"
+        android:layout_alignStart="@+id/ltbD" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    H   "
+        android:id="@+id/linH"
+        android:layout_below="@+id/textView18"
+        android:layout_toStartOf="@+id/k2V" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    V    "
+        android:id="@+id/linV"
+        android:layout_marginStart="25dp"
+        android:layout_below="@+id/textView18"
+        android:layout_toEndOf="@+id/textView6" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    Q    "
+        android:id="@+id/linQ"
+        android:layout_below="@+id/textView18"
+        android:layout_toEndOf="@+id/textView18" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="------------LTB Magnets------------"
+        android:id="@+id/textView23"
+        android:textAlignment="center"
+        android:paddingBottom="10dp"
+        android:layout_below="@+id/linS"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/title_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="   D    "
+        android:id="@+id/ltbD"
+        android:layout_below="@+id/textView23"
+        android:layout_toStartOf="@+id/textView23" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    H   "
+        android:id="@+id/ltbH"
+        android:layout_below="@+id/textView23"
+        android:layout_toStartOf="@+id/linV" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    V    "
+        android:id="@+id/ltbV"
+        android:layout_alignTop="@+id/ltbH"
+        android:layout_alignStart="@+id/linV" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    Q    "
+        android:id="@+id/ltbQ"
+        android:layout_alignTop="@+id/ltbV"
+        android:layout_alignStart="@+id/linQ" />
+
 </RelativeLayout>
