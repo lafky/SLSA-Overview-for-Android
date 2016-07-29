@@ -6,8 +6,9 @@
     <color name="tab_inactive">#FFA500</color>
     <color name="tab_active">#00FF00</color>
     <color name="title_text">#AAAAAA</color>
-    <color name="good_PV">#00CC00</color>
+    <color name="good_PV">#55CC55</color>
     <color name="bad_PV">#EE0000</color>
     <color name="warn_PV">#EEEE00</color>
     <color name="nocom_PV">#FFFFFF</color>
+    <color name="neutral_PV">#20B2AA</color>
 </resources>

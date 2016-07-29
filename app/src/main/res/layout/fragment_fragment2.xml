@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Gun Bias:"
+        android:text="Gun Voltage:"
         android:id="@+id/textView17"
         android:textColor="@color/title_text"
         android:paddingLeft="20dp"
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="                      "
-        android:id="@+id/gB"
+        android:id="@+id/gV"
         android:textAlignment="textEnd"
         android:paddingRight="20dp"
         android:layout_alignParentTop="true"
@@ -78,7 +78,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="-----------Linac Magnets-----------"
+        android:text="----------Linac Magnets----------"
         android:id="@+id/textView18"
         android:textAlignment="center"
         android:paddingBottom="10dp"
@@ -91,17 +91,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="   S   "
+        android:text="    S    "
         android:id="@+id/linS"
-        android:layout_below="@+id/textView18"
-        android:layout_alignStart="@+id/ltbD" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="    H   "
-        android:id="@+id/linH"
+        android:layout_marginEnd="46dp"
         android:layout_below="@+id/textView18"
         android:layout_toStartOf="@+id/k2V" />
 
@@ -109,11 +101,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    H    "
+        android:id="@+id/linH"
+        android:layout_below="@+id/textView18"
+        android:layout_alignEnd="@+id/ltbH" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="    V    "
         android:id="@+id/linV"
-        android:layout_marginStart="25dp"
         android:layout_below="@+id/textView18"
-        android:layout_toEndOf="@+id/textView6" />
+        android:layout_toEndOf="@+id/linH" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -122,12 +122,12 @@
         android:text="    Q    "
         android:id="@+id/linQ"
         android:layout_below="@+id/textView18"
-        android:layout_toEndOf="@+id/textView18" />
+        android:layout_toEndOf="@+id/linV" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="------------LTB Magnets------------"
+        android:text="-----------LTB Magnets-----------"
         android:id="@+id/textView23"
         android:textAlignment="center"
         android:paddingBottom="10dp"
@@ -143,16 +143,16 @@
         android:text="   D    "
         android:id="@+id/ltbD"
         android:layout_below="@+id/textView23"
-        android:layout_toStartOf="@+id/textView23" />
+        android:layout_alignEnd="@+id/linS" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="    H   "
+        android:text="    H    "
         android:id="@+id/ltbH"
         android:layout_below="@+id/textView23"
-        android:layout_toStartOf="@+id/linV" />
+        android:layout_toEndOf="@+id/ltbD" />
 
     <TextView
         android:layout_width="wrap_content"

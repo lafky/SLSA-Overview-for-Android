@@ -84,39 +84,189 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        TextView bc = (TextView)findViewById(R.id.bC);
-                        TextView lt = (TextView)findViewById(R.id.lT);
-                        TextView bm = (TextView)findViewById(R.id.bM);
-                        TextView ns = (TextView)findViewById(R.id.nS);
-                        TextView ux = (TextView)findViewById(R.id.uX);
-                        TextView uy = (TextView)findViewById(R.id.uY);
-                        TextView br2sr = (TextView)findViewById(R.id.b2sEff);
-                        TextView boocurr = (TextView)findViewById(R.id.booCurr);
-                        TextView s1 = (TextView)findViewById(R.id.ls1);
-                        TextView s2 = (TextView)findViewById(R.id.ls2);
 
+                        //Connect variable names to activity IDs
+                        //Main page
+                        TextView bC = (TextView)findViewById(R.id.bC);
+                        TextView lT = (TextView)findViewById(R.id.lT);
+                        TextView bM = (TextView)findViewById(R.id.bM);
+                        TextView nS = (TextView)findViewById(R.id.nS);
+                        TextView uX = (TextView)findViewById(R.id.uX);
+                        TextView uY = (TextView)findViewById(R.id.uY);
+                        TextView b2sEff = (TextView)findViewById(R.id.b2sEff);
+                        TextView booCurr = (TextView)findViewById(R.id.booCurr);
+                        TextView ls1 = (TextView)findViewById(R.id.ls1);
+                        TextView ls2 = (TextView)findViewById(R.id.ls2);
+                        TextView xSize = (TextView)findViewById(R.id.xSize);
+                        TextView ySize = (TextView)findViewById(R.id.ySize);
+                        TextView xPos = (TextView)findViewById(R.id.xPos);
+                        TextView yPos = (TextView)findViewById(R.id.yPos);
+                        TextView xSTD = (TextView)findViewById(R.id.xSTD);
+                        TextView ySTD = (TextView)findViewById(R.id.ySTD);
 
+                        //Linac
                         TextView k1v = (TextView)findViewById(R.id.k1V);
                         TextView k2v = (TextView)findViewById(R.id.k2V);
+                        TextView gV = (TextView)findViewById(R.id.gV);
+                        TextView linS = (TextView)findViewById(R.id.linS);
+                        TextView linH = (TextView)findViewById(R.id.linH);
+                        TextView linV = (TextView)findViewById(R.id.linV);
+                        TextView linQ = (TextView)findViewById(R.id.linQ);
+                        TextView ltbD = (TextView)findViewById(R.id.ltbD);
+                        TextView ltbH = (TextView)findViewById(R.id.ltbH);
+                        TextView ltbV = (TextView)findViewById(R.id.ltbV);
+                        TextView ltbQ = (TextView)findViewById(R.id.ltbQ);
 
-                        if (messages[0].toString().equals("overview")) {
+                        //First conditional parses the returning message for which tab to update
+                        if (messages[0].toString().contains("overview")) {
                             Log.d("UPDATING","Main window updating");
-                            bc.setText(messages[1]);
-                            lt.setText(messages[2]);
-                            bm.setText(messages[3]);
-                            ns.setText(messages[4]);
-                            ux.setText(messages[5]);
-                            uy.setText(messages[6]);
-                            br2sr.setText(messages[7]);
-                            boocurr.setText(messages[8]);
-                            s1.setText(messages[9]);
-                            s2.setText(messages[10]);
 
-                        } else if (messages[0].toString().equals("linac")){
-                            Log.d("UPDATING","Linac window updating");
-                            k1v.setTextColor(getResources().getColor(R.color.good_PV));
+                            //Some PVs change colors when they're alarming, etc...
+                            bC.setText(messages[1]);
+                            if (Double.parseDouble(bC.getText().toString()) > 199.9){
+                                bC.setTextColor(getResources().getColor(R.color.good_PV));
+                            } else if ((Double.parseDouble(bC.getText().toString()) <= 199.9) &&  (Double.parseDouble(bC.getText().toString()) > 180)) {
+                                bC.setTextColor(getResources().getColor(R.color.warn_PV));
+                            } else{
+                                bC.setTextColor(getResources().getColor(R.color.bad_PV));
+                            }
+
+                            lT.setText(messages[2]);
+                            if (Double.parseDouble(lT.getText().toString()) > 24){
+                                lT.setTextColor(getResources().getColor(R.color.good_PV));
+                            } else if ((Double.parseDouble(lT.getText().toString()) <= 24) &&  (Double.parseDouble(lT.getText().toString()) > 20)) {
+                                lT.setTextColor(getResources().getColor(R.color.warn_PV));
+                            } else{
+                                lT.setTextColor(getResources().getColor(R.color.bad_PV));
+                            }
+
+                            ls1.setText(messages[9]);
+                            if (Double.parseDouble(ls1.getText().toString()) > 90){
+                                ls1.setTextColor(getResources().getColor(R.color.good_PV));
+                            } else if ((Double.parseDouble(lT.getText().toString()) <= 85) &&  (Double.parseDouble(lT.getText().toString()) > 60)) {
+                                ls1.setTextColor(getResources().getColor(R.color.warn_PV));
+                            } else{
+                                ls1.setTextColor(getResources().getColor(R.color.bad_PV));
+                            }
+
+                            ls2.setText(messages[10]);
+                            if (Double.parseDouble(ls2.getText().toString()) > 90){
+                                ls2.setTextColor(getResources().getColor(R.color.good_PV));
+                            } else if ((Double.parseDouble(lT.getText().toString()) <= 85) &&  (Double.parseDouble(lT.getText().toString()) > 60)) {
+                                ls2.setTextColor(getResources().getColor(R.color.warn_PV));
+                            } else{
+                                ls2.setTextColor(getResources().getColor(R.color.bad_PV));
+                            }
+
+                            xSize.setText(messages[11]);
+                            if (Double.parseDouble(xSize.getText().toString()) < 320){
+                                xSize.setTextColor(getResources().getColor(R.color.good_PV));
+                            } else if ((Double.parseDouble(xSize.getText().toString()) >= 320) &&  (Double.parseDouble(xSize.getText().toString()) < 335)) {
+                                xSize.setTextColor(getResources().getColor(R.color.warn_PV));
+                            } else{
+                                xSize.setTextColor(getResources().getColor(R.color.bad_PV));
+                            }
+
+                            ySize.setText(messages[12]);
+                            if (Double.parseDouble(ySize.getText().toString()) < 280){
+                                ySize.setTextColor(getResources().getColor(R.color.good_PV));
+                            } else if ((Double.parseDouble(ySize.getText().toString()) >= 280) &&  (Double.parseDouble(ySize.getText().toString()) < 290)) {
+                                ySize.setTextColor(getResources().getColor(R.color.warn_PV));
+                            } else{
+                                ySize.setTextColor(getResources().getColor(R.color.bad_PV));
+                            }
+
+                            xSTD.setText(messages[15]);
+                            if (Double.parseDouble(xSTD.getText().toString()) < .5){
+                                xSTD.setTextColor(getResources().getColor(R.color.good_PV));
+                            } else if ((Double.parseDouble(xSTD.getText().toString()) >= .5) &&  (Double.parseDouble(xSTD.getText().toString()) < 1)) {
+                                xSTD.setTextColor(getResources().getColor(R.color.warn_PV));
+                            } else{
+                                xSTD.setTextColor(getResources().getColor(R.color.bad_PV));
+                            }
+
+                            ySTD.setText(messages[16]);
+                            if (Double.parseDouble(ySTD.getText().toString()) < 1){
+                                ySTD.setTextColor(getResources().getColor(R.color.good_PV));
+                            } else if ((Double.parseDouble(ySTD.getText().toString()) >= 1) &&  (Double.parseDouble(ySTD.getText().toString()) < 1.5)) {
+                                ySTD.setTextColor(getResources().getColor(R.color.warn_PV));
+                            } else{
+                                ySTD.setTextColor(getResources().getColor(R.color.bad_PV));
+                            }
+
+                            //Neutral PVs don't change colors
+                            bM.setText(messages[3]);
+                            nS.setText(messages[4]);
+                            uX.setText(messages[5]);
+                            uY.setText(messages[6]);
+                            b2sEff.setText(messages[7]);
+                            booCurr.setText(messages[8]);
+                            xPos.setText(messages[13]);
+                            yPos.setText(messages[14]);
+
+                            //Parse it for the Linac tab
+                        } else if (messages[0].toString().contains("linac")){
+                            Log.d("UPDATING","Updating Linac TAB");
                             k1v.setText(messages[1]);
                             k2v.setText(messages[2]);
+                            gV.setText(messages[3]);
+
+                            //Set PV colors if they're not alarming
+                            if (Double.parseDouble(k1v.getText().toString()) < 34){
+                                k1v.setTextColor(getResources().getColor(R.color.bad_PV));
+                            } else{
+                                k1v.setTextColor(getResources().getColor(R.color.good_PV));
+                            }
+                            if (Double.parseDouble(k2v.getText().toString()) < 34){
+                                k2v.setTextColor(getResources().getColor(R.color.bad_PV));
+                            } else{
+                                k2v.setTextColor(getResources().getColor(R.color.good_PV));
+                            }
+                            if (Double.parseDouble(gV.getText().toString()) < 89){
+                                gV.setTextColor(getResources().getColor(R.color.bad_PV));
+                            } else{
+                                gV.setTextColor(getResources().getColor(R.color.good_PV));
+                            }
+                            if (messages[4].toString().equals("0")){
+                                linS.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            }else{
+                                linS.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[5].toString().equals("0")){
+                                linH.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            }else{
+                                linH.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[6].toString().equals("0")){
+                                linV.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            }else{
+                                linV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[7].toString().equals("0")){
+                                linQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            }else{
+                                linQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[8].toString().equals("3")){
+                                ltbD.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            }else{
+                                ltbD.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[9].toString().equals("2")){
+                                ltbH.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            }else{
+                                ltbH.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[10].toString().equals("4")){
+                                ltbV.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            }else{
+                                ltbV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[11].toString().equals("11")){
+                                ltbQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            }else{
+                                ltbQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
                         }
 
                     }
@@ -144,6 +294,21 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
         handler.removeCallbacks(updateGUI);
     }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+
+        mWebSocketClient.close();
+        handler.removeCallbacks(updateGUI);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        connectWebSocket();
+        handler.postDelayed(updateGUI,1000);
+    }
 
 
     @Override

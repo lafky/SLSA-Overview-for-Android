@@ -84,7 +84,8 @@
         android:layout_alignEnd="@+id/lT"
         android:layout_toEndOf="@+id/textView2"
         android:textAlignment="textEnd"
-        android:paddingRight="20dp" />
+        android:paddingRight="20dp"
+        android:textColor="@color/neutral_PV" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -95,18 +96,20 @@
         android:layout_alignEnd="@+id/bM"
         android:layout_toEndOf="@+id/textView3"
         android:textAlignment="textEnd"
-        android:paddingRight="20dp" />
+        android:paddingRight="20dp"
+        android:textColor="@color/neutral_PV" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="--------TUNES--------"
+        android:text="------------TUNES------------"
         android:id="@+id/textView7"
         android:layout_below="@+id/textView4"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:textAlignment="center"
-        android:paddingBottom="10dp" />
+        android:paddingBottom="10dp"
+        android:textColor="@color/title_text" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -139,7 +142,8 @@
         android:paddingRight="20dp"
         android:layout_below="@+id/textView7"
         android:layout_alignEnd="@+id/nS"
-        android:layout_toEndOf="@+id/textView8" />
+        android:layout_toEndOf="@+id/textView8"
+        android:textColor="@color/neutral_PV" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -150,7 +154,8 @@
         android:paddingRight="20dp"
         android:layout_below="@+id/uX"
         android:layout_alignEnd="@+id/nS"
-        android:layout_toEndOf="@+id/textView8" />
+        android:layout_toEndOf="@+id/textView8"
+        android:textColor="@color/neutral_PV" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -161,7 +166,8 @@
         android:paddingBottom="10dp"
         android:layout_below="@+id/textView9"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:textColor="@color/title_text" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -184,7 +190,8 @@
         android:paddingRight="20dp"
         android:layout_below="@+id/textView10"
         android:layout_alignEnd="@+id/uY"
-        android:layout_toEndOf="@+id/textView9" />
+        android:layout_toEndOf="@+id/textView9"
+        android:textColor="@color/neutral_PV" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -206,7 +213,8 @@
         android:paddingRight="20dp"
         android:layout_below="@+id/b2sEff"
         android:layout_alignEnd="@+id/nS"
-        android:layout_alignStart="@+id/b2sEff" />
+        android:layout_alignStart="@+id/b2sEff"
+        android:textColor="@color/neutral_PV" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -243,12 +251,96 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="--------SR Beam Size and Shape--------"
+        android:text="-----X-Ray FWHM, Position, and STD Dev. (um)-----"
         android:id="@+id/textView13"
         android:textAlignment="center"
         android:paddingBottom="10dp"
         android:layout_below="@+id/textView14"
         android:layout_alignParentEnd="true"
-        android:layout_alignStart="@+id/textView9" />
+        android:layout_alignStart="@+id/textView9"
+        android:textColor="@color/title_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="X  :      "
+        android:id="@+id/textView15"
+        android:paddingLeft="20dp"
+        android:textColor="@color/title_text"
+        android:layout_alignBaseline="@+id/xPos"
+        android:layout_alignBottom="@+id/xPos"
+        android:layout_toStartOf="@+id/xSize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Y  :      "
+        android:id="@+id/textView16"
+        android:paddingLeft="20dp"
+        android:textColor="@color/title_text"
+        android:layout_below="@+id/textView15"
+        android:layout_alignStart="@+id/textView15" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="      "
+        android:id="@+id/xSize"
+        android:layout_above="@+id/ySize"
+        android:layout_alignStart="@+id/booCurr" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="      "
+        android:id="@+id/ySize"
+        android:layout_alignTop="@+id/textView16"
+        android:layout_alignStart="@+id/xSize"
+        android:layout_alignEnd="@+id/xSize" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="      "
+        android:id="@+id/xPos"
+        android:layout_marginStart="24dp"
+        android:layout_alignBaseline="@+id/xSTD"
+        android:layout_alignBottom="@+id/xSTD"
+        android:layout_toEndOf="@+id/textView4"
+        android:textColor="@color/neutral_PV" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="      "
+        android:id="@+id/yPos"
+        android:layout_below="@+id/xPos"
+        android:layout_toStartOf="@+id/xSTD"
+        android:textColor="@color/neutral_PV" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="      "
+        android:id="@+id/xSTD"
+        android:layout_below="@+id/textView13"
+        android:layout_toEndOf="@+id/xPos"
+        android:layout_marginStart="28dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="      "
+        android:id="@+id/ySTD"
+        android:layout_below="@+id/xSTD"
+        android:layout_alignStart="@+id/xSTD" />
 
 </RelativeLayout>
