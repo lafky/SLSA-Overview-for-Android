@@ -27,6 +27,14 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.androidplot.util.PixelUtils;
+import com.androidplot.xy.SimpleXYSeries;
+import com.androidplot.xy.XYSeries;
+import com.androidplot.xy.*;
+import java.util.Arrays;
+import android.graphics.DashPathEffect;
+
+
 public class MainActivity extends AppCompatActivity implements TabsListener {
     private List<Fragment> fragmentList = new ArrayList<>();
     private List<String> tabTitles = new ArrayList<>();
@@ -203,6 +211,17 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                             booCurr.setText(messages[8]);
                             xPos.setText(messages[13]);
                             yPos.setText(messages[14]);
+                            //Need to add a "+" if the value for the position is positive
+                            if (Double.parseDouble(messages[14].toString()) > 0){
+                                yPos.setText("+"+messages[14]);
+                            }else{
+                                yPos.setText(messages[14]);
+                            }
+                            if (Double.parseDouble(xPos.getText().toString()) > 0){
+                                xPos.setText("+"+messages[13]);
+                            }else{
+                                xPos.setText(messages[13]);
+                            }
 
                             //Parse it for the Linac tab
                         } else if (messages[0].toString().contains("linac")){

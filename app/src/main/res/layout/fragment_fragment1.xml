@@ -268,9 +268,8 @@
         android:id="@+id/textView15"
         android:paddingLeft="20dp"
         android:textColor="@color/title_text"
-        android:layout_alignBaseline="@+id/xPos"
-        android:layout_alignBottom="@+id/xPos"
-        android:layout_toStartOf="@+id/xSize" />
+        android:layout_below="@+id/textView13"
+        android:layout_alignStart="@+id/textView13" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -281,7 +280,8 @@
         android:paddingLeft="20dp"
         android:textColor="@color/title_text"
         android:layout_below="@+id/textView15"
-        android:layout_alignStart="@+id/textView15" />
+        android:layout_alignStart="@+id/textView15"
+        android:layout_marginTop="35dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -289,8 +289,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="      "
         android:id="@+id/xSize"
-        android:layout_above="@+id/ySize"
-        android:layout_alignStart="@+id/booCurr" />
+        android:layout_below="@+id/textView13"
+        android:layout_toStartOf="@+id/booCurr" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -299,30 +299,27 @@
         android:text="      "
         android:id="@+id/ySize"
         android:layout_alignTop="@+id/textView16"
-        android:layout_alignStart="@+id/xSize"
-        android:layout_alignEnd="@+id/xSize" />
+        android:layout_alignStart="@+id/xSize" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="      "
+        android:text="            "
         android:id="@+id/xPos"
-        android:layout_marginStart="24dp"
-        android:layout_alignBaseline="@+id/xSTD"
-        android:layout_alignBottom="@+id/xSTD"
-        android:layout_toEndOf="@+id/textView4"
-        android:textColor="@color/neutral_PV" />
+        android:textColor="@color/neutral_PV"
+        android:layout_alignTop="@+id/xSize"
+        android:layout_toEndOf="@+id/textView14" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="      "
+        android:text="            "
         android:id="@+id/yPos"
-        android:layout_below="@+id/xPos"
-        android:layout_toStartOf="@+id/xSTD"
-        android:textColor="@color/neutral_PV" />
+        android:textColor="@color/neutral_PV"
+        android:layout_alignTop="@+id/ySize"
+        android:layout_toEndOf="@+id/textView14" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -330,9 +327,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="      "
         android:id="@+id/xSTD"
-        android:layout_below="@+id/textView13"
+        android:layout_above="@+id/textView16"
         android:layout_toEndOf="@+id/xPos"
-        android:layout_marginStart="28dp" />
+        android:paddingLeft="30dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -340,7 +337,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="      "
         android:id="@+id/ySTD"
-        android:layout_below="@+id/xSTD"
-        android:layout_alignStart="@+id/xSTD" />
+        android:layout_alignTop="@+id/yPos"
+        android:paddingLeft="30dp"
+        android:layout_toEndOf="@+id/yPos" />
 
 </RelativeLayout>
