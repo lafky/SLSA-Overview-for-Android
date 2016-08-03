@@ -51,11 +51,6 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
     Runnable updateGUI = new Runnable(){
         public void run(){
 
-
-            handler.postDelayed(this,1000);  // Run this again in 1 second
-            //mWebSocketClient.send("overview");
-            //Log.d("myTag",pagerAdapter.getCurrentFragment().toString());
-
             if (pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment1")) {
                 mWebSocketClient.send("overview");
             } else if(pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment2")){
@@ -64,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
             else{
                 Log.d("myTag","WAITING");
             }
-
+            handler.postDelayed(this,1000);  // Run this again in 1 second
 
         }
 
@@ -73,7 +68,9 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
     private void connectWebSocket() {
         URI uri;
         try {
-            uri = new URI("ws://10.6.0.77:6000");      } catch (URISyntaxException e) {
+            uri = new URI("ws://10.6.100.199:6000");
+            //uri = new URI("ws://10.6.0.77:6000");
+                  } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
         }
@@ -329,6 +326,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
         handler.postDelayed(updateGUI,1000);
     }
 
+    private XYPlot plot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -390,7 +388,9 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
             if (getCurrentFragment() != object) {
                 mCurrentFragment = ((Fragment) object);
             }
+            //handler.removeCallbacks(updateGUI);
             super.setPrimaryItem(container, position, object);
+            //handler.postDelayed(updateGUI,100);
         }
 
         public MyPagerAdapter(FragmentManager fm) {
