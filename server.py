@@ -88,6 +88,78 @@ class SimpleEcho(WebSocket):
 	ltbQ10 = PV('PS-Q-1-10:STATUS1')
 	ltbQ11 = PV('PS-Q-1-11:STATUS1')
 
+	#Booster PVs to send back
+	#Dipoles
+	bD1 = PV('PS-BF-2:STATUS1')
+	bD2 = PV('PS1-BD-2:STATUS1')
+	bD3 = PV('PS2-BD-2:STATUS1')
+
+	#Hor correctors
+	bH1 = PV('PS-OCH-B-2-1:STATUS1')
+	bH2 = PV('PS-OCH-B-2-2:STATUS1')
+	bH3 = PV('PS-OCH-B-2-3:STATUS1')
+	bH4 = PV('PS-OCH-B-2-4:STATUS1')
+	bH5 = PV('PS-OCH-B-2-5:STATUS1')
+	bH6 = PV('PS-OCH-B-2-6:STATUS1')
+	bH7 = PV('PS-OCH-B-2-7:STATUS1')
+	bH8 = PV('PS-OCH-B-2-8:STATUS1')
+	bH9 = PV('PS-OCH-B-2-9:STATUS1')
+	bH10 = PV('PS-OCH-B-2-10:STATUS1')
+	bH11 = PV('PS-OCH-B-2-11:STATUS1')
+	bH12 = PV('PS-OCH-B-2-12:STATUS1')
+
+	#Ver corrector
+	bV1 = PV('PS-OCV-B-2-1:STATUS1')
+	bV2 = PV('PS-OCV-B-2-2:STATUS1')
+	bV3 = PV('PS-OCV-B-2-3:STATUS1')
+	bV4 = PV('PS-OCV-B-2-4:STATUS1')
+	bV5 = PV('PS-OCV-B-2-5:STATUS1')
+	bV6 = PV('PS-OCV-B-2-6:STATUS1')
+	bV7 = PV('PS-OCV-B-2-7:STATUS1')
+	bV8 = PV('PS-OCV-B-2-8:STATUS1')
+	bV9 = PV('PS-OCV-B-2-9:STATUS1')
+	bV10 = PV('PS-OCV-B-2-10:STATUS1')
+	bV11 = PV('PS-OCV-B-2-11:STATUS1')
+	bV12 = PV('PS-OCV-E-2-01:STATUS1')
+
+	#Quads:
+	bQ1 = PV('PS-QD-2:STATUS1')
+	bQ2 = PV('PS-QF-2:STATUS1')
+
+	#Sextupoles:
+	bS1 = PV('PS-SD-2:STATUS1')
+	bS2 = PV('PS-SF-2:STATUS1')
+
+	#BTS Magnets
+	#Dipoles
+	btsD1 = PV('PS-BA-3-1:STATUS1')
+	btsD2 = PV('PS-BA-3-2:STATUS1')
+	btsD3 = PV('PS-BA-3-3:STATUS1')
+	btsD4 = PV('PS-BA-3-4:STATUS1')
+	btsD5 = PV('PS-SEP-A-3:STATUS1')
+	btsD6 = PV('PS-SEP-B-3:STATUS1')
+
+	#Vert correctors
+	btsV1 = PV('PS-OC-3-1:STATUS1')
+	btsV2 = PV('PS-OC-3-2:STATUS1')
+	btsV3 = PV('PS-OC-3-3:STATUS1')
+	btsV4 = PV('PS-OC-3-4:STATUS1')
+	btsV5 = PV('PS-OC-3-5:STATUS1')
+
+	#Quads:
+	btsQ1 = PV('PS-QFA-3-1:STATUS1')
+	btsQ2 = PV('PS-QFA-3-2:STATUS1') 
+	btsQ3 = PV('PS-QFB-3-1:STATUS1')
+	btsQ4 = PV('PS-QFA-3-3:STATUS1')
+	btsQ5 = PV('PS-QFA-3-4:STATUS1')
+	btsQ6 = PV('PS-QFA-3-5:STATUS1')
+	btsQ7 = PV('PS-QFA-3-6:STATUS1')
+	btsQ8 = PV('PS-QFA-3-7:STATUS1')
+	btsQ9 = PV('PS-QFB-3-2:STATUS1')
+	btsQ10 = PV('PS-QFB-3-3:STATUS1')
+	btsQ11 = PV('PS-QFC-3-1:STATUS1')
+	btsQ12 = PV('PS-QFA-3-8:STATUS1')
+
 	def handleMessage(self):
 
 		if str(self.data) == "overview":
@@ -101,14 +173,12 @@ class SimpleEcho(WebSocket):
 			self.gV = str(caget("LI-RF-GUN-01:HV"))[:5]
 
 			#Sum Signals for Linac and LTB magnets are the sum of all the PV "good" states.  If the sum is > 0 there is a problem.
-			#Linac Solenoids
+			#Linac Magnets
 			self.linSSum = str(int(SimpleEcho.linS0.get())+int(SimpleEcho.linS1.get())+int(SimpleEcho.linS2.get())+int(SimpleEcho.linS3.get())+int(SimpleEcho.linS4.get())+int(SimpleEcho.linS5.get())+int(SimpleEcho.linS6.get())+int(SimpleEcho.linS7.get())+int(SimpleEcho.linS8.get())+int(SimpleEcho.linS9.get())+int(SimpleEcho.linS10.get())+int(SimpleEcho.linS11.get())+int(SimpleEcho.linS12.get())+int(SimpleEcho.linS13.get())+int(SimpleEcho.linS14.get()))
-			#Linac Horizontal Correctors
 			self.linHSum = str(int(SimpleEcho.linH1.get())+int(SimpleEcho.linH2.get())+int(SimpleEcho.linH3.get())+int(SimpleEcho.linH4.get())+int(SimpleEcho.linH5.get())+int(SimpleEcho.linH6.get()))
-			#Linac Vertical Correctors
 			self.linVSum = str(int(SimpleEcho.linV1.get())+int(SimpleEcho.linV2.get())+int(SimpleEcho.linV3.get())+int(SimpleEcho.linV4.get())+int(SimpleEcho.linV5.get())+int(SimpleEcho.linV6.get()))
-			#Linac Quads
 			self.linQSum = str(int(SimpleEcho.linQ1.get())+int(SimpleEcho.linQ2.get())+int(SimpleEcho.linQ3.get()))
+
 			#LTB Magnets
 			self.ltbDSum = str(int(SimpleEcho.ltbD1.get())+int(SimpleEcho.ltbD2.get())+int(SimpleEcho.ltbD3.get()))
 			self.ltbHSum = str(int(SimpleEcho.ltbH1.get())+int(SimpleEcho.ltbH2.get()))
@@ -116,6 +186,20 @@ class SimpleEcho(WebSocket):
 			self.ltbQSum = str(int(SimpleEcho.ltbQ1.get())+int(SimpleEcho.ltbQ2.get())+int(SimpleEcho.ltbQ3.get())+int(SimpleEcho.ltbQ4.get())+int(SimpleEcho.ltbQ5.get())+int(SimpleEcho.ltbQ6.get())+int(SimpleEcho.ltbQ7.get())+int(SimpleEcho.ltbQ8.get())+int(SimpleEcho.ltbQ9.get())+int(SimpleEcho.ltbQ10.get())+int(SimpleEcho.ltbQ11.get()))
 
 			self.message = "linac" + "::" + self.k1V + "::" + self.k2V + "::" + self.gV + "::" + self.linSSum + "::" + self.linHSum + "::" + self.linVSum + "::" + self.linQSum + "::" + self.ltbDSum + "::" + self.ltbHSum + "::" + self.ltbVSum + "::" + self.ltbQSum
+
+		elif str(self.data) == "booster":
+			
+			#Booster Magnets
+			self.booDSum = str(int(SimpleEcho.bD1.get())+int(SimpleEcho.bD2.get())+int(SimpleEcho.bD3.get()))
+			self.booHSum = str(int(SimpleEcho.bH1.get())+int(SimpleEcho.bH2.get())+int(SimpleEcho.bH3.get())+int(SimpleEcho.bH4.get())+int(SimpleEcho.bH5.get())+int(SimpleEcho.bH6.get())+int(SimpleEcho.bH7.get())+int(SimpleEcho.bH8.get())+int(SimpleEcho.bH9.get())+int(SimpleEcho.bH10.get())+int(SimpleEcho.bH11.get())+int(SimpleEcho.bH12.get()))
+			self.booVSum = str(int(SimpleEcho.bV1.get())+int(SimpleEcho.bV2.get())+int(SimpleEcho.bV3.get())+int(SimpleEcho.bV4.get())+int(SimpleEcho.bV5.get())+int(SimpleEcho.bV6.get())+int(SimpleEcho.bV7.get())+int(SimpleEcho.bV8.get())+int(SimpleEcho.bV9.get())+int(SimpleEcho.bV10.get())+int(SimpleEcho.bV11.get())+int(SimpleEcho.bV12.get()))
+			self.booQSum = str(int(SimpleEcho.bQ1.get())+int(SimpleEcho.bQ2.get()))
+			self.booSSum = str(int(SimpleEcho.bS1.get())+int(SimpleEcho.bS2.get()))
+
+			#BTS Magnets
+			self.btsDSum = str(int(SimpleEcho.btsD1.get())+int(SimpleEcho.btsD2.get())+int(SimpleEcho.btsD3.get())+int(SimpleEcho.btsD4.get())+int(SimpleEcho.btsD5.get())+int(SimpleEcho.btsD6.get()))
+			self.btsVSum = str(int(SimpleEcho.btsV1.get())+int(SimpleEcho.btsV1.get())+int(SimpleEcho.btsV1.get())+int(SimpleEcho.btsV1.get())+int(SimpleEcho.btsV1.get()))
+			self.btsQSum = str(int(SimpleEcho.btsQ1.get())+int(SimpleEcho.btsQ2.get())+int(SimpleEcho.btsQ3.get())+int(SimpleEcho.btsQ4.get())+int(SimpleEcho.btsQ5.get())+int(SimpleEcho.btsQ6.get())+int(SimpleEcho.btsQ7.get())+int(SimpleEcho.btsQ8.get())+int(SimpleEcho.btsQ9.get())+int(SimpleEcho.btsQ10.get())+int(SimpleEcho.btsQ11.get())+int(SimpleEcho.btsQ12.get()))
 
 		self.sendMessage(unicode(self.message,"utf-8"))
 
