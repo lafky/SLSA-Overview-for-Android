@@ -50,15 +50,18 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
     //Main runnable to update the gui
     Runnable updateGUI = new Runnable(){
         public void run(){
-
+            //connectWebSocket();
             if (pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment1")) {
                 mWebSocketClient.send("overview");
             } else if(pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment2")){
                 mWebSocketClient.send("linac");
+            } else if(pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment3")){
+                mWebSocketClient.send("booster");
             }
             else{
                 Log.d("myTag","WAITING");
             }
+            //mWebSocketClient.close();
             handler.postDelayed(this,1000);  // Run this again in 1 second
 
         }
@@ -68,8 +71,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
     private void connectWebSocket() {
         URI uri;
         try {
-            uri = new URI("ws://10.6.100.199:6000");
-            //uri = new URI("ws://10.6.0.77:6000");
+            uri = new URI("ws://10.6.0.37:6000");
                   } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -122,9 +124,14 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                         TextView ltbV = (TextView)findViewById(R.id.ltbV);
                         TextView ltbQ = (TextView)findViewById(R.id.ltbQ);
 
+                        //Booster
+                        TextView borf = (TextView)findViewById(R.id.borf);
+                        TextView freqdif = (TextView)findViewById(R.id.freqdif);
+                        TextView rmps = (TextView)findViewById(R.id.rmps);
+
                         //First conditional parses the returning message for which tab to update
                         if (messages[0].toString().contains("overview")) {
-                            Log.d("UPDATING","Main window updating");
+                            Log.d("UPDATING","Updating Main Tab");
 
                             //Some PVs change colors when they're alarming, etc...
                             bC.setText(messages[1]);
@@ -222,7 +229,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
 
                             //Parse it for the Linac tab
                         } else if (messages[0].toString().contains("linac")){
-                            Log.d("UPDATING","Updating Linac TAB");
+                            Log.d("UPDATING","Updating Linac Tab");
                             k1v.setText(messages[1]);
                             k2v.setText(messages[2]);
                             gV.setText(messages[3]);
@@ -284,8 +291,27 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                                 ltbQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
                         }
+                        else if (messages[0].toString().contains("booster")){
+                            Log.d("UPDATING","Updating Booster Tab");
+                            freqdif.setText(messages[2]);
+                            rmps.setText(messages[3]);
+                            if (messages[1].toString().equals("1")){
+                                borf.setText("Good");
+                                borf.setTextColor(getResources().getColor(R.color.good_PV));
+                            }else{
+                                borf.setText("Bad");
+                                borf.setTextColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[3].toString().equals("16")) {
+                                rmps.setText(("Good"));
+                                rmps.setTextColor(getResources().getColor(R.color.good_PV));
+                            }else{
+                                    rmps.setText(("Bad"));
+                                    rmps.setTextColor(getResources().getColor(R.color.bad_PV));
+                                }
+                            }
 
-                    }
+                        }
                 });
             }
 
@@ -323,6 +349,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
         super.onResume();
 
         connectWebSocket();
+        //mWebSocketClient.connect();
         handler.postDelayed(updateGUI,1000);
     }
 
@@ -361,8 +388,8 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
         // This method ensures that tab selection events update the ViewPager and page changes update the selected tab.
         tabLayout.setupWithViewPager(viewPager);
 
-        connectWebSocket();
-        handler.postDelayed(updateGUI,1000);
+        //connectWebSocket();
+        //handler.postDelayed(updateGUI,1000);
     }
 
     @Override

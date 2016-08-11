@@ -9,10 +9,169 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Hello Fragment 3!"
-        android:layout_marginLeft="157dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="BORF:"
+        android:id="@+id/textView19"
+        android:textColor="@color/title_text"
+        android:paddingLeft="20dp"
         android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/textView20" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="BO/SR RF Phase Dif:"
+        android:id="@+id/textView20"
+        android:textColor="@color/title_text"
+        android:paddingLeft="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView19"
+        android:layout_alignParentLeft="true"
+        android:layout_toStartOf="@+id/freqdif" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Ramping MPS:"
+        android:id="@+id/textView21"
+        android:textColor="@color/title_text"
+        android:paddingLeft="20dp"
+        android:layout_alignTop="@+id/rmps"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="                      "
+        android:id="@+id/borf"
+        android:textAlignment="textEnd"
+        android:paddingRight="20dp"
+        android:layout_above="@+id/textView20"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="                      "
+        android:id="@+id/freqdif"
+        android:layout_alignParentEnd="true"
+        android:textAlignment="textEnd"
+        android:paddingRight="20dp"
+        android:layout_below="@+id/borf"
+        android:layout_toEndOf="@+id/textView24"
+        android:textColor="@color/neutral_PV" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="                       "
+        android:id="@+id/rmps"
+        android:textAlignment="textEnd"
+        android:paddingRight="20dp"
+        android:layout_below="@+id/freqdif"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/textView24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="---------Booster Magnets---------"
+        android:id="@+id/textView22"
+        android:textAlignment="center"
+        android:paddingBottom="10dp"
+        android:textColor="@color/title_text"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/textView21"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-----------BTS Magnets-----------"
+        android:id="@+id/textView24"
+        android:textAlignment="center"
+        android:paddingBottom="10dp"
+        android:textColor="@color/title_text"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/textView25"
+        android:layout_alignStart="@+id/textView22" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    Q    "
+        android:id="@+id/textView25"
+        android:layout_below="@+id/textView22"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    V    "
+        android:id="@+id/textView26"
+        android:layout_below="@+id/textView22"
+        android:layout_toStartOf="@+id/textView25" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    H    "
+        android:id="@+id/textView27"
+        android:layout_below="@+id/textView22"
+        android:layout_toEndOf="@+id/textView24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    S    "
+        android:id="@+id/textView28"
+        android:layout_below="@+id/textView22"
+        android:layout_alignEnd="@+id/textView22" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    D    "
+        android:id="@+id/textView29"
+        android:layout_above="@+id/textView24"
+        android:layout_toStartOf="@+id/textView26" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    D    "
+        android:id="@+id/textView30"
+        android:layout_below="@+id/textView24"
+        android:layout_alignStart="@+id/textView26" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    V    "
+        android:id="@+id/textView31"
+        android:layout_below="@+id/textView24"
+        android:layout_toEndOf="@+id/textView30" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="    Q    "
+        android:id="@+id/textView32"
+        android:layout_below="@+id/textView24"
+        android:layout_alignEnd="@+id/textView24" />
 </RelativeLayout>
