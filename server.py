@@ -89,6 +89,27 @@ class SimpleEcho(WebSocket):
 	ltbQ11 = PV('PS-Q-1-11:STATUS1')
 
 	#Booster PVs to send back
+
+	#Assorted PVs
+	#Borf status
+	borf = PV('BS_RF_LLRF:S_RF_STATUS')
+	#Borf Freq
+	bfreq = PV('BS_RF_LLRF:CAV_PHASE_MONITOR')
+	srfreq = PV('SR07RF01LLE01:MPHASE_REF_RD_BACK_MONITOR')
+	#Ramping magnets
+	rmps1 = PV('PS-QD-2:RAMP_DOWNLOAD_STATUS')
+	rmps2 = PV('PS-QF-2:RAMP_DOWNLOAD_STATUS')
+	rmps3 = PV('PS-BF-2:RAMP_DOWNLOAD_STATUS')
+	rmps4 = PV('PS1-BD-2:RAMP_DOWNLOAD_STATUS')
+	rmps5 = PV('PS2-BD-2:RAMP_DOWNLOAD_STATUS')
+	rmps6 = PV('PS-OCH-B-2-6:RAMP_DOWNLOAD_STATUS')
+	rmps7 = PV('PS-OCH-B-2-18:RAMP_DOWNLOAD_STATUS')
+	rmps8 = PV('PS-OCH-B-2-22:RAMP_DOWNLOAD_STATUS')
+	
+	#Kickers	
+	brk1 = PV('PS-KI-2:POWERSUPPLY_STATUS3')
+	brk2 = PV('PS-KE-2:POWERSUPPLY_STATUS3')
+
 	#Dipoles
 	bD1 = PV('PS-BF-2:STATUS1')
 	bD2 = PV('PS1-BD-2:STATUS1')
@@ -117,7 +138,7 @@ class SimpleEcho(WebSocket):
 	bV6 = PV('PS-OCV-B-2-6:STATUS1')
 	bV7 = PV('PS-OCV-B-2-7:STATUS1')
 	bV8 = PV('PS-OCV-B-2-8:STATUS1')
-	bV9 = PV('PS-OCV-B-2-9:STATUS1')
+	bV9 = PV('PS-OCV-B-2-09:STATUS1')
 	bV10 = PV('PS-OCV-B-2-10:STATUS1')
 	bV11 = PV('PS-OCV-B-2-11:STATUS1')
 	bV12 = PV('PS-OCV-E-2-01:STATUS1')
@@ -188,18 +209,26 @@ class SimpleEcho(WebSocket):
 			self.message = "linac" + "::" + self.k1V + "::" + self.k2V + "::" + self.gV + "::" + self.linSSum + "::" + self.linHSum + "::" + self.linVSum + "::" + self.linQSum + "::" + self.ltbDSum + "::" + self.ltbHSum + "::" + self.ltbVSum + "::" + self.ltbQSum
 
 		elif str(self.data) == "booster":
-			
+
+			self.freqdif = str(SimpleEcho.srfreq.get() - SimpleEcho.bfreq.get())[:6]
+			self.rmps = str(SimpleEcho.rmps1.get()+SimpleEcho.rmps2.get()+SimpleEcho.rmps3.get()+SimpleEcho.rmps4.get()+SimpleEcho.rmps5.get()+SimpleEcho.rmps6.get()+SimpleEcho.rmps7.get()+SimpleEcho.rmps8.get())
+
 			#Booster Magnets
-			self.booDSum = str(int(SimpleEcho.bD1.get())+int(SimpleEcho.bD2.get())+int(SimpleEcho.bD3.get()))
-			self.booHSum = str(int(SimpleEcho.bH1.get())+int(SimpleEcho.bH2.get())+int(SimpleEcho.bH3.get())+int(SimpleEcho.bH4.get())+int(SimpleEcho.bH5.get())+int(SimpleEcho.bH6.get())+int(SimpleEcho.bH7.get())+int(SimpleEcho.bH8.get())+int(SimpleEcho.bH9.get())+int(SimpleEcho.bH10.get())+int(SimpleEcho.bH11.get())+int(SimpleEcho.bH12.get()))
-			self.booVSum = str(int(SimpleEcho.bV1.get())+int(SimpleEcho.bV2.get())+int(SimpleEcho.bV3.get())+int(SimpleEcho.bV4.get())+int(SimpleEcho.bV5.get())+int(SimpleEcho.bV6.get())+int(SimpleEcho.bV7.get())+int(SimpleEcho.bV8.get())+int(SimpleEcho.bV9.get())+int(SimpleEcho.bV10.get())+int(SimpleEcho.bV11.get())+int(SimpleEcho.bV12.get()))
-			self.booQSum = str(int(SimpleEcho.bQ1.get())+int(SimpleEcho.bQ2.get()))
-			self.booSSum = str(int(SimpleEcho.bS1.get())+int(SimpleEcho.bS2.get()))
+			self.booDSum = str(SimpleEcho.bD1.get()+SimpleEcho.bD2.get()+SimpleEcho.bD3.get())
+			self.booHSum = str(SimpleEcho.bH1.get()+SimpleEcho.bH2.get()+SimpleEcho.bH3.get()+SimpleEcho.bH4.get()+SimpleEcho.bH5.get()+SimpleEcho.bH6.get()+SimpleEcho.bH7.get()+SimpleEcho.bH8.get()+SimpleEcho.bH9.get()+SimpleEcho.bH10.get()+SimpleEcho.bH11.get()+SimpleEcho.bH12.get())
+			self.booVSum = str(SimpleEcho.bV1.get()+SimpleEcho.bV2.get()+SimpleEcho.bV3.get()+SimpleEcho.bV4.get()+SimpleEcho.bV5.get()+SimpleEcho.bV6.get()+SimpleEcho.bV7.get()+SimpleEcho.bV8.get()+SimpleEcho.bV9.get()+SimpleEcho.bV10.get()+SimpleEcho.bV11.get()+SimpleEcho.bV12.get())
+			self.booQSum = str(SimpleEcho.bQ1.get()+SimpleEcho.bQ2.get())
+			self.booSSum = str(SimpleEcho.bS1.get()+SimpleEcho.bS2.get())
+
+		
 
 			#BTS Magnets
-			self.btsDSum = str(int(SimpleEcho.btsD1.get())+int(SimpleEcho.btsD2.get())+int(SimpleEcho.btsD3.get())+int(SimpleEcho.btsD4.get())+int(SimpleEcho.btsD5.get())+int(SimpleEcho.btsD6.get()))
-			self.btsVSum = str(int(SimpleEcho.btsV1.get())+int(SimpleEcho.btsV1.get())+int(SimpleEcho.btsV1.get())+int(SimpleEcho.btsV1.get())+int(SimpleEcho.btsV1.get()))
-			self.btsQSum = str(int(SimpleEcho.btsQ1.get())+int(SimpleEcho.btsQ2.get())+int(SimpleEcho.btsQ3.get())+int(SimpleEcho.btsQ4.get())+int(SimpleEcho.btsQ5.get())+int(SimpleEcho.btsQ6.get())+int(SimpleEcho.btsQ7.get())+int(SimpleEcho.btsQ8.get())+int(SimpleEcho.btsQ9.get())+int(SimpleEcho.btsQ10.get())+int(SimpleEcho.btsQ11.get())+int(SimpleEcho.btsQ12.get()))
+			self.btsDSum = str(SimpleEcho.btsD1.get()+SimpleEcho.btsD2.get()+SimpleEcho.btsD3.get()+SimpleEcho.btsD4.get()+SimpleEcho.btsD5.get()+SimpleEcho.btsD6.get())
+			self.btsVSum = str(SimpleEcho.btsV1.get()+SimpleEcho.btsV2.get()+SimpleEcho.btsV3.get()+SimpleEcho.btsV4.get()+SimpleEcho.btsV5.get())
+			self.btsQSum = str(SimpleEcho.btsQ1.get()+SimpleEcho.btsQ2.get()+SimpleEcho.btsQ3.get()+SimpleEcho.btsQ4.get()+SimpleEcho.btsQ5.get()+SimpleEcho.btsQ6.get()+SimpleEcho.btsQ7.get()+SimpleEcho.btsQ8.get()+SimpleEcho.btsQ9.get()+SimpleEcho.btsQ10.get()+SimpleEcho.btsQ11.get()+SimpleEcho.btsQ12.get())
+			#print self.booDSum
+			self.message = "booster" + "::" + str(SimpleEcho.borf.get()) + "::" + self.freqdif + "::" + self.rmps + "::" + self.booDSum + "::" + self.booQSum + "::" + self.booSSum + "::" + self.booHSum + "::" + self.booVSum + "::" + self.btsDSum + "::" + self.btsQSum + "::" + self.btsVSum
+
 
 		self.sendMessage(unicode(self.message,"utf-8"))
 
