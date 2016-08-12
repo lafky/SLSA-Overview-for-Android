@@ -14,6 +14,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -128,6 +129,14 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                         TextView borf = (TextView)findViewById(R.id.borf);
                         TextView freqdif = (TextView)findViewById(R.id.freqdif);
                         TextView rmps = (TextView)findViewById(R.id.rmps);
+                        TextView booD = (TextView)findViewById(R.id.booD);
+                        TextView booQ = (TextView)findViewById(R.id.booQ);
+                        TextView booS = (TextView)findViewById(R.id.booS);
+                        TextView booH = (TextView)findViewById(R.id.booH);
+                        TextView booV = (TextView)findViewById(R.id.booV);
+                        TextView btsD = (TextView)findViewById(R.id.btsD);
+                        TextView btsQ = (TextView)findViewById(R.id.btsQ);
+                        TextView btsV = (TextView)findViewById(R.id.btsV);
 
                         //First conditional parses the returning message for which tab to update
                         if (messages[0].toString().contains("overview")) {
@@ -291,27 +300,67 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                                 ltbQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
                         }
-                        else if (messages[0].toString().contains("booster")){
-                            Log.d("UPDATING","Updating Booster Tab");
+                        else if (messages[0].toString().contains("booster")) {
+                            Log.d("UPDATING", "Updating Booster Tab");
                             freqdif.setText(messages[2]);
                             rmps.setText(messages[3]);
-                            if (messages[1].toString().equals("1")){
+
+                            if (messages[1].toString().equals("1")) {
                                 borf.setText("Good");
                                 borf.setTextColor(getResources().getColor(R.color.good_PV));
-                            }else{
+                            } else {
                                 borf.setText("Bad");
                                 borf.setTextColor(getResources().getColor(R.color.bad_PV));
                             }
                             if (messages[3].toString().equals("16")) {
                                 rmps.setText(("Good"));
                                 rmps.setTextColor(getResources().getColor(R.color.good_PV));
-                            }else{
-                                    rmps.setText(("Bad"));
-                                    rmps.setTextColor(getResources().getColor(R.color.bad_PV));
-                                }
+                            } else {
+                                rmps.setText(("Bad"));
+                                rmps.setTextColor(getResources().getColor(R.color.bad_PV));
                             }
-
+                            if (messages[4].toString().equals("3")) {
+                                booD.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            } else {
+                                booD.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[5].toString().equals("2")) {
+                                booQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            } else {
+                                booQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[6].toString().equals("2")) {
+                                booS.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            } else {
+                                booS.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[7].toString().equals("12")) {
+                                booH.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            } else {
+                                booH.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[8].toString().equals("12")) {
+                                booV.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            } else {
+                                booV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[9].toString().equals("6")) {
+                                btsD.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            } else {
+                                btsD.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[10].toString().equals("12")) {
+                                btsQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            } else {
+                                btsQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
+                            if (messages[11].toString().equals("5")) {
+                                btsV.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                            } else {
+                                btsV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                            }
                         }
+                    }
                 });
             }
 
@@ -371,8 +420,6 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
         tabTitles.add("Linac");
         tabTitles.add("Booster");
         tabTitles.add("Storage Ring");
-
-        Log.i("test",tabTitles.get(0));
 
         // Set a toolbar which will replace the action bar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
