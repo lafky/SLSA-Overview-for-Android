@@ -181,6 +181,30 @@ class SimpleEcho(WebSocket):
 	btsQ11 = PV('PS-QFC-3-1:STATUS1')
 	btsQ12 = PV('PS-QFA-3-8:STATUS1')
 
+	#Storage ring PVS to collect
+	#Shutters
+	
+	sh1 = PV('PP00:MASTER_SHUTTER_ENABLE_STATUS')
+	sh2 = PV('SR02IR01MIR01:POSITION_STATUS')
+	sh3 = PV('PP00SR03FE01PSH01:CLOSED_STATUS')
+	sh32 = PV('PP00SR03FE02PSH01:CLOSED_STATUS')
+	sh4 = PV('PP00SR05FE01PSH01:CLOSED_STATUS')
+	sh5 = PV('PP00SR08FE01PSH01:CLOSED_STATUS')
+	sh6 = PV('PP00SR10FE01PSH01:CLOSED_STATUS')
+	sh7 = PV('PP00SR12FE01PSH01:CLOSED_STATUS')
+	sh8 = PV('PP00SR13FE01PSH01:CLOSED_STATUS')
+	sh9 = PV('PP00SR14FE01PSH01:CLOSED_STATUS')
+
+	#Gaps/field strengths
+	mx2Gap = PV('SR03ID01:GAP_MONITOR')
+	xfmGap = PV('SR05ID01:GAP_MONITOR')
+	swxGap = PV('SR13ID01:GAP_MONITOR')
+
+	imblField = PV('SR08SCW01:FIELD_MONITOR')
+
+	xasGap = PV('SR12ID01:GAP_MONITOR')
+	app2Gap = PV('SR14ID01:GAP_MONITOR')
+
 	def handleMessage(self):
 
 		if str(self.data) == "overview":
@@ -226,9 +250,14 @@ class SimpleEcho(WebSocket):
 			self.btsDSum = str(SimpleEcho.btsD1.get()+SimpleEcho.btsD2.get()+SimpleEcho.btsD3.get()+SimpleEcho.btsD4.get()+SimpleEcho.btsD5.get()+SimpleEcho.btsD6.get())
 			self.btsVSum = str(SimpleEcho.btsV1.get()+SimpleEcho.btsV2.get()+SimpleEcho.btsV3.get()+SimpleEcho.btsV4.get()+SimpleEcho.btsV5.get())
 			self.btsQSum = str(SimpleEcho.btsQ1.get()+SimpleEcho.btsQ2.get()+SimpleEcho.btsQ3.get()+SimpleEcho.btsQ4.get()+SimpleEcho.btsQ5.get()+SimpleEcho.btsQ6.get()+SimpleEcho.btsQ7.get()+SimpleEcho.btsQ8.get()+SimpleEcho.btsQ9.get()+SimpleEcho.btsQ10.get()+SimpleEcho.btsQ11.get()+SimpleEcho.btsQ12.get())
-			#print self.booDSum
+
 			self.message = "booster" + "::" + str(SimpleEcho.borf.get()) + "::" + self.freqdif + "::" + self.rmps + "::" + self.booDSum + "::" + self.booQSum + "::" + self.booSSum + "::" + self.booHSum + "::" + self.booVSum + "::" + self.btsDSum + "::" + self.btsQSum + "::" + self.btsVSum
 
+		elif str(self.data) == "storagering":
+
+			self.message = "storagering" + "::" + str(SimpleEcho.sh1.get()) + "::" + str(SimpleEcho.sh2.get()) + "::" + str(SimpleEcho.sh3.get()) + "::" + str(SimpleEcho.sh32.get()) + "::" + str(SimpleEcho.sh4.get()) + "::" + str(SimpleEcho.sh5.get()) + "::" + str(SimpleEcho.sh6.get()) + "::" + str(SimpleEcho.sh7.get()) + "::" + str(SimpleEcho.sh8.get()) + "::" + str(SimpleEcho.sh9.get()) + "::" + str(SimpleEcho.mx2Gap.get())[:5] + " mm" + "::" + str(SimpleEcho.xfmGap.get())[:5] + " mm" + "::" + str(SimpleEcho.imblField.get())[:5] + " T" + "::" + str(SimpleEcho.xasGap.get())[:5] + " mm" + "::" + str(SimpleEcho.swxGap.get())[:5] + " mm" + "::" + str(SimpleEcho.app2Gap.get())[:5] + " mm"
+
+			#print self.message
 
 		self.sendMessage(unicode(self.message,"utf-8"))
 
