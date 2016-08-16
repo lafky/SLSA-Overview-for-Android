@@ -44,6 +44,18 @@
                 android:paddingBottom="15dp"
                 android:background="@drawable/button_bg_neutral"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textView40"
+                android:layout_column="43"
+                android:textColor="@color/neutral_PV"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="                         "
+                android:textAlignment="center" />
+
         </TableRow>
 
         <TableRow
@@ -74,10 +86,11 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/irGap"
-                android:layout_column="7"
+                android:layout_column="43"
                 android:textColor="@color/neutral_PV"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                android:paddingRight="20dp"
+                android:textAlignment="center" />
 
         </TableRow>
 
@@ -89,7 +102,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="MX1:"
+                android:text="Micro X:"
                 android:id="@+id/textView31"
                 android:layout_column="0"
                 android:paddingLeft="20dp"
@@ -110,10 +123,11 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/mx1Gap"
-                android:layout_column="7"
+                android:layout_column="43"
                 android:textColor="@color/neutral_PV"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                android:paddingRight="20dp"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -122,7 +136,7 @@
 
             <TextView
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="MX2:"
+                android:text="Macro X:"
                 android:id="@+id/textView32"
                 android:layout_column="0"
                 android:paddingLeft="20dp"
@@ -143,10 +157,12 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/textView42"
-                android:layout_column="7"
+                android:layout_column="43"
                 android:textColor="@color/neutral_PV"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                android:paddingRight="20dp"
+                android:text="N/A"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -176,10 +192,11 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/xfmGap"
-                android:layout_column="7"
+                android:layout_column="43"
                 android:textColor="@color/neutral_PV"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                android:paddingRight="20dp"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -209,10 +226,11 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/imblField"
-                android:layout_column="7"
+                android:layout_column="43"
                 android:textColor="@color/neutral_PV"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                android:paddingRight="20dp"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -242,10 +260,12 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/textView45"
-                android:layout_column="7"
+                android:layout_column="43"
                 android:textColor="@color/neutral_PV"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                android:paddingRight="20dp"
+                android:text="N/A"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -275,10 +295,11 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/xasGap"
-                android:layout_column="7"
+                android:layout_column="43"
                 android:textColor="@color/neutral_PV"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                android:paddingRight="20dp"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -308,10 +329,11 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/swaxGap"
-                android:layout_column="7"
+                android:layout_column="43"
                 android:textColor="@color/neutral_PV"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                android:paddingRight="20dp"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
@@ -341,10 +363,12 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/sxrGap"
-                android:layout_column="7"
+                android:layout_column="34"
                 android:textColor="@color/neutral_PV"
                 android:paddingLeft="20dp"
-                android:paddingRight="20dp" />
+                android:paddingRight="20dp"
+                android:layout_span="10"
+                android:textAlignment="center" />
         </TableRow>
 
         <TableRow
