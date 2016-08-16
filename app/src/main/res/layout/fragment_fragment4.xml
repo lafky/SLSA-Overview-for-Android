@@ -8,11 +8,364 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Murder YOURE FAMILY!"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="157dp"
+        android:text="--------Beam Line Status and Gaps--------"
+        android:id="@+id/textView25"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="368dp" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/title_text" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView25"
+        android:layout_alignParentStart="true"
+        android:id="@+id/tableLayout">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="PSS Enable:"
+                android:id="@+id/textView29"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/title_text" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton"
+                android:layout_column="1"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:background="@drawable/button_bg_neutral"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="IR:"
+                android:id="@+id/textView30"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/title_text" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton2"
+                android:layout_column="1"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:background="@drawable/button_bg_neutral"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/irGap"
+                android:layout_column="7"
+                android:textColor="@color/neutral_PV"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="MX1:"
+                android:id="@+id/textView31"
+                android:layout_column="0"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/title_text" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton3"
+                android:layout_column="1"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:background="@drawable/button_bg_neutral"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/mx1Gap"
+                android:layout_column="7"
+                android:textColor="@color/neutral_PV"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="MX2:"
+                android:id="@+id/textView32"
+                android:layout_column="0"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/title_text" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton4"
+                android:layout_column="1"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:background="@drawable/button_bg_neutral"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textView42"
+                android:layout_column="7"
+                android:textColor="@color/neutral_PV"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="XFM:"
+                android:id="@+id/textView33"
+                android:layout_column="0"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/title_text" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton5"
+                android:layout_column="1"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:background="@drawable/button_bg_neutral"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/xfmGap"
+                android:layout_column="7"
+                android:textColor="@color/neutral_PV"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="IMBL:"
+                android:id="@+id/textView34"
+                android:layout_column="0"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/title_text" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton6"
+                android:layout_column="1"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:background="@drawable/button_bg_neutral"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/imblField"
+                android:layout_column="7"
+                android:textColor="@color/neutral_PV"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="PD:"
+                android:id="@+id/textView35"
+                android:layout_column="0"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/title_text" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton7"
+                android:layout_column="1"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:background="@drawable/button_bg_neutral"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textView45"
+                android:layout_column="7"
+                android:textColor="@color/neutral_PV"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="XAS:"
+                android:id="@+id/textView36"
+                android:layout_column="0"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/title_text" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton8"
+                android:layout_column="1"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:background="@drawable/button_bg_neutral"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/xasGap"
+                android:layout_column="7"
+                android:textColor="@color/neutral_PV"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="S/WAX"
+                android:id="@+id/textView37"
+                android:layout_column="0"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/title_text" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton9"
+                android:layout_column="1"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:background="@drawable/button_bg_neutral"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/swaxGap"
+                android:layout_column="7"
+                android:textColor="@color/neutral_PV"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="SXR:"
+                android:id="@+id/textView38"
+                android:layout_column="0"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/title_text" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton10"
+                android:layout_column="1"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:background="@drawable/button_bg_neutral" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/sxrGap"
+                android:layout_column="7"
+                android:textColor="@color/neutral_PV"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/textView39"
+                android:layout_column="0" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/imageButton11"
+                android:layout_column="1"
+                android:visibility="invisible" />
+
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>
