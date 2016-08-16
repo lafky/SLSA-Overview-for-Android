@@ -11,7 +11,6 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:titleTextColor="@color/title_text"/>
 
         <android.support.design.widget.TabLayout
