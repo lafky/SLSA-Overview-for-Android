@@ -2,6 +2,7 @@ package lafkym.tabstryagain;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -17,6 +18,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.java_websocket.client.WebSocketClient;
@@ -46,6 +48,8 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
     private String TAG = this.getClass().getSimpleName();
     private Handler handler;
 
+    public String alldata[];
+
 
 
     //Main runnable to update the gui
@@ -58,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                 mWebSocketClient.send("linac");
             } else if(pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment3")){
                 mWebSocketClient.send("booster");
+            } else if(pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment4")){
+                mWebSocketClient.send("storagering");
             }
             else{
                 Log.d("myTag","WAITING");
@@ -72,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
     private void connectWebSocket() {
         URI uri;
         try {
-            uri = new URI("ws://10.6.0.37:6000");
+            uri = new URI("ws://10.6.0.137:6000");
                   } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -137,6 +143,25 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                         TextView btsD = (TextView)findViewById(R.id.btsD);
                         TextView btsQ = (TextView)findViewById(R.id.btsQ);
                         TextView btsV = (TextView)findViewById(R.id.btsV);
+
+                        //Storage Ring
+                        ImageButton sh1 = (ImageButton)findViewById(R.id.imageButton);
+                        ImageButton sh2 = (ImageButton)findViewById(R.id.imageButton2);
+                        ImageButton sh3 = (ImageButton)findViewById(R.id.imageButton3);
+                        ImageButton sh4 = (ImageButton)findViewById(R.id.imageButton4);
+                        ImageButton sh5 = (ImageButton)findViewById(R.id.imageButton5);
+                        ImageButton sh6 = (ImageButton)findViewById(R.id.imageButton6);
+                        ImageButton sh7 = (ImageButton)findViewById(R.id.imageButton7);
+                        ImageButton sh8 = (ImageButton)findViewById(R.id.imageButton8);
+                        ImageButton sh9 = (ImageButton)findViewById(R.id.imageButton9);
+                        ImageButton sh10 = (ImageButton)findViewById(R.id.imageButton10);
+
+                        TextView mx1 = (TextView)findViewById(R.id.mx1Gap);
+                        TextView xfm = (TextView)findViewById(R.id.xfmGap);
+                        TextView imbl = (TextView)findViewById(R.id.imblField);
+                        TextView xas = (TextView)findViewById(R.id.xasGap);
+                        TextView swax = (TextView)findViewById(R.id.swaxGap);
+                        TextView sxr = (TextView)findViewById(R.id.sxrGap);
 
                         //First conditional parses the returning message for which tab to update
                         if (messages[0].toString().contains("overview")) {
@@ -359,6 +384,67 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                             } else {
                                 btsV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
+                        }
+                        else if (messages[0].toString().contains("storagering")){
+                            if (messages[1].toString().equals("2")){
+                                sh1.setBackgroundResource(R.drawable.button_bg_good);
+                            }else{
+                                sh1.setBackgroundResource(R.drawable.button_bg_bad);
+                            }
+                            if (messages[2].toString().equals("3")){
+                                sh2.setBackgroundResource(R.drawable.button_bg_good);
+                            }else if(messages[2].toString().equals("1")){
+                                sh2.setBackgroundResource(R.drawable.button_bg_yellow);
+                            }else{
+                                sh2.setBackgroundResource(R.drawable.button_bg_bad);
+                            }
+                            if (messages[3].toString().equals("1")){
+                                sh3.setBackgroundResource(R.drawable.button_bg_good);
+                            }else{
+                                sh3.setBackgroundResource(R.drawable.button_bg_bad);
+                            }
+                            if (messages[4].toString().equals("1")){
+                                sh4.setBackgroundResource(R.drawable.button_bg_good);
+                            }else{
+                                sh4.setBackgroundResource(R.drawable.button_bg_bad);
+                            }
+                            if (messages[5].toString().equals("1")){
+                                sh5.setBackgroundResource(R.drawable.button_bg_good);
+                            }else{
+                                sh5.setBackgroundResource(R.drawable.button_bg_bad);
+                            }
+                            if (messages[6].toString().equals("1")){
+                                sh6.setBackgroundResource(R.drawable.button_bg_good);
+                            }else{
+                                sh6.setBackgroundResource(R.drawable.button_bg_bad);
+                            }
+                            if (messages[7].toString().equals("3")){
+                                sh7.setBackgroundResource(R.drawable.button_bg_good);
+                            }else{
+                                sh7.setBackgroundResource(R.drawable.button_bg_bad);
+                            }
+                            if (messages[8].toString().equals("2")){
+                                sh8.setBackgroundResource(R.drawable.button_bg_bad);
+                            }else{
+                                sh8.setBackgroundResource(R.drawable.button_bg_good);
+                            }
+                            if (messages[9].toString().equals("1")){
+                                sh9.setBackgroundResource(R.drawable.button_bg_good);
+                            }else{
+                                sh9.setBackgroundResource(R.drawable.button_bg_bad);
+                            }
+                            if (messages[10].toString().equals("1")){
+                                sh10.setBackgroundResource(R.drawable.button_bg_good);
+                            }else{
+                                sh10.setBackgroundResource(R.drawable.button_bg_bad);
+                            }
+
+                            mx1.setText(messages[11].toString());
+                            xfm.setText(messages[12].toString());
+                            imbl.setText(messages[13].toString());
+                            xas.setText(messages[14].toString());
+                            swax.setText(messages[15].toString());
+                            sxr.setText(messages[16].toString());
                         }
                     }
                 });
