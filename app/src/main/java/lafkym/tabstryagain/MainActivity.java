@@ -1,21 +1,18 @@
 package lafkym.tabstryagain;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Vibrator;
+
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.content.ContextCompat;
+
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextWatcher;
+
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -23,7 +20,6 @@ import android.widget.TextView;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
-import org.w3c.dom.Text;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -452,12 +448,12 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
 
             @Override
             public void onClose(int i, String s, boolean b) {
-                Log.i("Websocket1", "Closed " + s);
+                Log.i("Websocket", "Closed " + s);
             }
 
             @Override
             public void onError(Exception e) {
-                Log.i("Websocket2", "Error " + e.getMessage());
+                Log.i("Websocket", "Error " + e.getMessage());
             }
         };
         mWebSocketClient.connect();
@@ -484,7 +480,6 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
         super.onResume();
 
         connectWebSocket();
-        //mWebSocketClient.connect();
         handler.postDelayed(updateGUI,1000);
     }
 
