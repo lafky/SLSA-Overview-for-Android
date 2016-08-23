@@ -1,8 +1,12 @@
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 from epics import caget
 from epics import PV
+import sched, time
 
 class SimpleEcho(WebSocket):
+
+	#Machine status (i.e., user beam, machine studies, etc...)
+	mon = PV('FS01:BEAM_MODE_MONITOR')
 
 	#Overview PVs to send back
 	bc = PV('SR11BCM01:CURRENT_MONITOR')
@@ -210,6 +214,7 @@ class SimpleEcho(WebSocket):
 		if str(self.data) == "overview":
 	
 			self.message = "overview" + "::" + str(SimpleEcho.bc.get())[:6] + "::" + str(SimpleEcho.lt.get())[:6] + "::" + str(SimpleEcho.mode.get(as_string=True))[:6]  + "::" + str(SimpleEcho.ns.get())[:6] + "::" + str(SimpleEcho.ux.get())[:6] + "::" + str(SimpleEcho.uy.get())[:6] + "::" + str(SimpleEcho.br2sr.get())[:4] + "::" + str(SimpleEcho.boocurr.get())[:4] + "::" + str(SimpleEcho.s1.get())[:6] + "::" + str(SimpleEcho.s2.get())[:6] + "::" + str(SimpleEcho.xSize.get())[:5] + "::" + str(SimpleEcho.ySize.get())[:5] + "::" + str(SimpleEcho.xOff.get())[:5] + "::" +str(SimpleEcho.yOff.get())[:4] + "::" + str(SimpleEcho.xSTD.get())[:5] + "::" + str(SimpleEcho.ySTD.get())[:5]
+
 		elif str(self.data) == "linac":
 
 			#Linac PVs to send back	
@@ -244,8 +249,6 @@ class SimpleEcho(WebSocket):
 			self.booQSum = str(SimpleEcho.bQ1.get()+SimpleEcho.bQ2.get())
 			self.booSSum = str(SimpleEcho.bS1.get()+SimpleEcho.bS2.get())
 
-		
-
 			#BTS Magnets
 			self.btsDSum = str(SimpleEcho.btsD1.get()+SimpleEcho.btsD2.get()+SimpleEcho.btsD3.get()+SimpleEcho.btsD4.get()+SimpleEcho.btsD5.get()+SimpleEcho.btsD6.get())
 			self.btsVSum = str(SimpleEcho.btsV1.get()+SimpleEcho.btsV2.get()+SimpleEcho.btsV3.get()+SimpleEcho.btsV4.get()+SimpleEcho.btsV5.get())
@@ -257,15 +260,59 @@ class SimpleEcho(WebSocket):
 
 			self.message = "storagering" + "::" + str(SimpleEcho.sh1.get()) + "::" + str(SimpleEcho.sh2.get()) + "::" + str(SimpleEcho.sh3.get()) + "::" + str(SimpleEcho.sh32.get()) + "::" + str(SimpleEcho.sh4.get()) + "::" + str(SimpleEcho.sh5.get()) + "::" + str(SimpleEcho.sh6.get()) + "::" + str(SimpleEcho.sh7.get()) + "::" + str(SimpleEcho.sh8.get()) + "::" + str(SimpleEcho.sh9.get()) + "::" + str(SimpleEcho.mx2Gap.get())[:5] + " mm" + "::" + str(SimpleEcho.xfmGap.get())[:5] + " mm" + "::" + str(SimpleEcho.imblField.get())[:5] + " T" + "::" + str(SimpleEcho.xasGap.get())[:5] + " mm" + "::" + str(SimpleEcho.swxGap.get())[:5] + " mm" + "::" + str(SimpleEcho.app2Gap.get())[:5] + " mm"
 
-			#print self.message
+		elif str(self.data) == "everything":
+
+			#Linac PVs to send back	
+			self.k1V = str(caget("LI-RF-AMPL-01:PFN:HV"))[:5]
+			self.k2V = str(caget("LI-RF-AMPL-02:PFN:HV"))[:5]
+			self.gV = str(caget("LI-RF-GUN-01:HV"))[:5]
+
+			#Sum Signals for Linac and LTB magnets are the sum of all the PV "good" states.  If the sum is > 0 there is a problem.
+			#Linac Magnets
+			self.linSSum = str(int(SimpleEcho.linS0.get())+int(SimpleEcho.linS1.get())+int(SimpleEcho.linS2.get())+int(SimpleEcho.linS3.get())+int(SimpleEcho.linS4.get())+int(SimpleEcho.linS5.get())+int(SimpleEcho.linS6.get())+int(SimpleEcho.linS7.get())+int(SimpleEcho.linS8.get())+int(SimpleEcho.linS9.get())+int(SimpleEcho.linS10.get())+int(SimpleEcho.linS11.get())+int(SimpleEcho.linS12.get())+int(SimpleEcho.linS13.get())+int(SimpleEcho.linS14.get()))
+			self.linHSum = str(int(SimpleEcho.linH1.get())+int(SimpleEcho.linH2.get())+int(SimpleEcho.linH3.get())+int(SimpleEcho.linH4.get())+int(SimpleEcho.linH5.get())+int(SimpleEcho.linH6.get()))
+			self.linVSum = str(int(SimpleEcho.linV1.get())+int(SimpleEcho.linV2.get())+int(SimpleEcho.linV3.get())+int(SimpleEcho.linV4.get())+int(SimpleEcho.linV5.get())+int(SimpleEcho.linV6.get()))
+			self.linQSum = str(int(SimpleEcho.linQ1.get())+int(SimpleEcho.linQ2.get())+int(SimpleEcho.linQ3.get()))
+
+			#LTB Magnets
+			self.ltbDSum = str(int(SimpleEcho.ltbD1.get())+int(SimpleEcho.ltbD2.get())+int(SimpleEcho.ltbD3.get()))
+			self.ltbHSum = str(int(SimpleEcho.ltbH1.get())+int(SimpleEcho.ltbH2.get()))
+			self.ltbVSum = str(int(SimpleEcho.ltbV1.get())+int(SimpleEcho.ltbV2.get())+int(SimpleEcho.ltbV3.get())+int(SimpleEcho.ltbV4.get()))
+			self.ltbQSum = str(int(SimpleEcho.ltbQ1.get())+int(SimpleEcho.ltbQ2.get())+int(SimpleEcho.ltbQ3.get())+int(SimpleEcho.ltbQ4.get())+int(SimpleEcho.ltbQ5.get())+int(SimpleEcho.ltbQ6.get())+int(SimpleEcho.ltbQ7.get())+int(SimpleEcho.ltbQ8.get())+int(SimpleEcho.ltbQ9.get())+int(SimpleEcho.ltbQ10.get())+int(SimpleEcho.ltbQ11.get()))
+
+			self.message = "linac" + "::" + self.k1V + "::" + self.k2V + "::" + self.gV + "::" + self.linSSum + "::" + self.linHSum + "::" + self.linVSum + "::" + self.linQSum + "::" + self.ltbDSum + "::" + self.ltbHSum + "::" + self.ltbVSum + "::" + self.ltbQSum
+
+			self.freqdif = str(SimpleEcho.srfreq.get() - SimpleEcho.bfreq.get())[:6]
+			self.rmps = str(SimpleEcho.rmps1.get()+SimpleEcho.rmps2.get()+SimpleEcho.rmps3.get()+SimpleEcho.rmps4.get()+SimpleEcho.rmps5.get()+SimpleEcho.rmps6.get()+SimpleEcho.rmps7.get()+SimpleEcho.rmps8.get())
+
+			#Booster Magnets
+			self.booDSum = str(SimpleEcho.bD1.get()+SimpleEcho.bD2.get()+SimpleEcho.bD3.get())
+			self.booHSum = str(SimpleEcho.bH1.get()+SimpleEcho.bH2.get()+SimpleEcho.bH3.get()+SimpleEcho.bH4.get()+SimpleEcho.bH5.get()+SimpleEcho.bH6.get()+SimpleEcho.bH7.get()+SimpleEcho.bH8.get()+SimpleEcho.bH9.get()+SimpleEcho.bH10.get()+SimpleEcho.bH11.get()+SimpleEcho.bH12.get())
+			self.booVSum = str(SimpleEcho.bV1.get()+SimpleEcho.bV2.get()+SimpleEcho.bV3.get()+SimpleEcho.bV4.get()+SimpleEcho.bV5.get()+SimpleEcho.bV6.get()+SimpleEcho.bV7.get()+SimpleEcho.bV8.get()+SimpleEcho.bV9.get()+SimpleEcho.bV10.get()+SimpleEcho.bV11.get()+SimpleEcho.bV12.get())
+			self.booQSum = str(SimpleEcho.bQ1.get()+SimpleEcho.bQ2.get())
+			self.booSSum = str(SimpleEcho.bS1.get()+SimpleEcho.bS2.get())
+
+			#BTS Magnets
+			self.btsDSum = str(SimpleEcho.btsD1.get()+SimpleEcho.btsD2.get()+SimpleEcho.btsD3.get()+SimpleEcho.btsD4.get()+SimpleEcho.btsD5.get()+SimpleEcho.btsD6.get())
+			self.btsVSum = str(SimpleEcho.btsV1.get()+SimpleEcho.btsV2.get()+SimpleEcho.btsV3.get()+SimpleEcho.btsV4.get()+SimpleEcho.btsV5.get())
+			self.btsQSum = str(SimpleEcho.btsQ1.get()+SimpleEcho.btsQ2.get()+SimpleEcho.btsQ3.get()+SimpleEcho.btsQ4.get()+SimpleEcho.btsQ5.get()+SimpleEcho.btsQ6.get()+SimpleEcho.btsQ7.get()+SimpleEcho.btsQ8.get()+SimpleEcho.btsQ9.get()+SimpleEcho.btsQ10.get()+SimpleEcho.btsQ11.get()+SimpleEcho.btsQ12.get())
+
+			#Gotta throw in some checks to see if there are any faults in linac/booster/SR that should alert on the app's tabs
+			if int(self.linSSum) != 0 or int(self.linHSum) != 0 or int(self.linVSum) != 0 or int(self.linQSum) != 0 or int(self.ltbDSum) != 3 or int(self.ltbHSum) != 2 or int(self.ltbVSum) != 4 or int(self.ltbQSum) != 11 or float(self.k1V) < 35 or float(self.k2V) < 34 or float(gV) < 89:
+				self.message = "bad1"
+			if int(self.booDSum) != 3 or int(self.booQSum) != 2 or int(self.booSSum) != 2 or int(self.booHSum) != 12 or int(self.booVSum) != 12 or int(self.btsDSum) != 6 or int(self.btsQSum) != 12 or int(self.btsVSum) != 5:
+				self.message = "bad2"
+
+			self.message = self.message + "everything" + "::" + str(SimpleEcho.bc.get())[:6] + "::" + str(SimpleEcho.lt.get())[:6] + "::" + str(SimpleEcho.mode.get(as_string=True))[:6]  + "::" + str(SimpleEcho.ns.get())[:6] + "::" + str(SimpleEcho.ux.get())[:6] + "::" + str(SimpleEcho.uy.get())[:6] + "::" + str(SimpleEcho.br2sr.get())[:4] + "::" + str(SimpleEcho.boocurr.get())[:4] + "::" + str(SimpleEcho.s1.get())[:6] + "::" + str(SimpleEcho.s2.get())[:6] + "::" + str(SimpleEcho.xSize.get())[:5] + "::" + str(SimpleEcho.ySize.get())[:5] + "::" + str(SimpleEcho.xOff.get())[:5] + "::" +str(SimpleEcho.yOff.get())[:4] + "::" + str(SimpleEcho.xSTD.get())[:5] + "::" + str(SimpleEcho.ySTD.get())[:5] + "::" + self.k1V + "::" + self.k2V + "::" + self.gV + "::" + self.linSSum + "::" + self.linHSum + "::" + self.linVSum + "::" + self.linQSum + "::" + self.ltbDSum + "::" + self.ltbHSum + "::" + self.ltbVSum + "::" + self.ltbQSum + "::" + str(SimpleEcho.borf.get()) + "::" + self.freqdif + "::" + self.rmps + "::" + self.booDSum + "::" + self.booQSum + "::" + self.booSSum + "::" + self.booHSum + "::" + self.booVSum + "::" + self.btsDSum + "::" + self.btsQSum + "::" + self.btsVSum + "::" + str(SimpleEcho.sh1.get()) + "::" + str(SimpleEcho.sh2.get()) + "::" + str(SimpleEcho.sh3.get()) + "::" + str(SimpleEcho.sh32.get()) + "::" + str(SimpleEcho.sh4.get()) + "::" + str(SimpleEcho.sh5.get()) + "::" + str(SimpleEcho.sh6.get()) + "::" + str(SimpleEcho.sh7.get()) + "::" + str(SimpleEcho.sh8.get()) + "::" + str(SimpleEcho.sh9.get()) + "::" + str(SimpleEcho.mx2Gap.get())[:5] + " mm" + "::" + str(SimpleEcho.xfmGap.get())[:5] + " mm" + "::" + str(SimpleEcho.imblField.get())[:5] + " T" + "::" + str(SimpleEcho.xasGap.get())[:5] + " mm" + "::" + str(SimpleEcho.swxGap.get())[:5] + " mm" + "::" + str(SimpleEcho.app2Gap.get())[:5] + " mm"
+
 
 		self.sendMessage(unicode(self.message,"utf-8"))
 
  	def handleConnected(self):
- 	       print self.address, 'connected'
+		print self.address, 'connected'
 
 	def handleClose(self):
-	        print self.address, 'closed'
+		print self.address, 'closed'
 
 server = SimpleWebSocketServer('', 6000, SimpleEcho)
 server.serveforever()
