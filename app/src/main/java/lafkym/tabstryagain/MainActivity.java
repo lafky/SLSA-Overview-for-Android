@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
     private void connectWebSocket() {
         URI uri;
         try {
-            uri = new URI("ws://10.6.0.137:6000");
+            uri = new URI("ws://10.6.0.138:6000");
                   } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
