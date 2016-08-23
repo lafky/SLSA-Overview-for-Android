@@ -1,5 +1,6 @@
 package lafkym.tabstryagain;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 
@@ -51,20 +52,11 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
     //Main runnable to update the gui
     Runnable updateGUI = new Runnable(){
         public void run(){
-            //connectWebSocket();
-            if (pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment1")) {
-                mWebSocketClient.send("overview");
-            } else if(pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment2")){
-                mWebSocketClient.send("linac");
-            } else if(pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment3")){
-                mWebSocketClient.send("booster");
-            } else if(pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment4")){
-                mWebSocketClient.send("storagering");
+            try{
+                mWebSocketClient.send("everything");
+            }catch(Exception e){
+                Log.d("debug","Unable to connect");
             }
-            else{
-                Log.d("myTag","WAITING");
-            }
-            //mWebSocketClient.close();
             handler.postDelayed(this,1000);  // Run this again in 1 second
 
         }
@@ -159,8 +151,21 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                         TextView swax = (TextView)findViewById(R.id.swaxGap);
                         TextView sxr = (TextView)findViewById(R.id.sxrGap);
 
+                        //Change tab colors for Linac/Booster if there's a problem
+
+                        if (messages[0].toString().contains("bad1")){
+                            tabTitles.set(1,"Linac ALERT");
+                        }else{
+                            tabTitles.set(1,"Linac");
+                        }
+
+                        if (messages[0].toString().contains("bad2")){
+                            tabTitles.set(2,"Booster ALERT");
+                        }else{
+                            tabTitles.set(2,"Booster");
+                        }
                         //First conditional parses the returning message for which tab to update
-                        if (messages[0].toString().contains("overview")) {
+                        if ((pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment1"))) {
                             Log.d("UPDATING","Updating Main Tab");
 
                             //Some PVs change colors when they're alarming, etc...
@@ -258,11 +263,11 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                             }
 
                             //Parse it for the Linac tab
-                        } else if (messages[0].toString().contains("linac")){
+                        } else if ((pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment2"))) {
                             Log.d("UPDATING","Updating Linac Tab");
-                            k1v.setText(messages[1]);
-                            k2v.setText(messages[2]);
-                            gV.setText(messages[3]);
+                            k1v.setText(messages[17]);
+                            k2v.setText(messages[18]);
+                            gV.setText(messages[19]);
 
                             //Set PV colors if they're not alarming
                             if (Double.parseDouble(k1v.getText().toString()) < 34){
@@ -280,167 +285,166 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                             } else{
                                 gV.setTextColor(getResources().getColor(R.color.good_PV));
                             }
-                            if (messages[4].toString().equals("0")){
+                            if (messages[20].toString().equals("0")){
                                 linS.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             }else{
                                 linS.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[5].toString().equals("0")){
+                            if (messages[21].toString().equals("0")){
                                 linH.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             }else{
                                 linH.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[6].toString().equals("0")){
+                            if (messages[22].toString().equals("0")){
                                 linV.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             }else{
                                 linV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[7].toString().equals("0")){
+                            if (messages[23].toString().equals("0")){
                                 linQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             }else{
                                 linQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[8].toString().equals("3")){
+                            if (messages[24].toString().equals("3")){
                                 ltbD.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             }else{
                                 ltbD.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[9].toString().equals("2")){
+                            if (messages[25].toString().equals("2")){
                                 ltbH.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             }else{
                                 ltbH.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[10].toString().equals("4")){
+                            if (messages[26].toString().equals("4")){
                                 ltbV.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             }else{
                                 ltbV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[11].toString().equals("11")){
+                            if (messages[27].toString().equals("11")){
                                 ltbQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             }else{
                                 ltbQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
                         }
-                        else if (messages[0].toString().contains("booster")) {
+                        else if ((pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment3"))) {
                             Log.d("UPDATING", "Updating Booster Tab");
-                            freqdif.setText(messages[2]);
-                            rmps.setText(messages[3]);
+                            freqdif.setText(messages[29]);
 
-                            if (messages[1].toString().equals("1")) {
+                            if (messages[28].toString().equals("1")) {
                                 borf.setText("Good");
                                 borf.setTextColor(getResources().getColor(R.color.good_PV));
                             } else {
                                 borf.setText("Bad");
                                 borf.setTextColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[3].toString().equals("16")) {
+                            if (messages[30].toString().equals("16")) {
                                 rmps.setText(("Good"));
                                 rmps.setTextColor(getResources().getColor(R.color.good_PV));
                             } else {
                                 rmps.setText(("Bad"));
                                 rmps.setTextColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[4].toString().equals("3")) {
+                            if (messages[31].toString().equals("3")) {
                                 booD.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             } else {
                                 booD.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[5].toString().equals("2")) {
+                            if (messages[32].toString().equals("2")) {
                                 booQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             } else {
                                 booQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[6].toString().equals("2")) {
+                            if (messages[33].toString().equals("2")) {
                                 booS.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             } else {
                                 booS.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[7].toString().equals("12")) {
+                            if (messages[34].toString().equals("12")) {
                                 booH.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             } else {
                                 booH.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[8].toString().equals("12")) {
+                            if (messages[35].toString().equals("12")) {
                                 booV.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             } else {
                                 booV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[9].toString().equals("6")) {
+                            if (messages[36].toString().equals("6")) {
                                 btsD.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             } else {
                                 btsD.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[10].toString().equals("12")) {
+                            if (messages[37].toString().equals("12")) {
                                 btsQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             } else {
                                 btsQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
-                            if (messages[11].toString().equals("5")) {
+                            if (messages[38].toString().equals("5")) {
                                 btsV.setBackgroundColor(getResources().getColor(R.color.good_PV));
                             } else {
                                 btsV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
                             }
                         }
-                        else if (messages[0].toString().contains("storagering")){
-                            if (messages[1].toString().equals("2")){
+                        else if ((pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment4"))) {
+                            if (messages[39].toString().equals("2")){
                                 sh1.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
                                 sh1.setBackgroundResource(R.drawable.button_bg_bad);
                             }
-                            if (messages[2].toString().equals("3")){
+                            if (messages[40].toString().equals("3")){
                                 sh2.setBackgroundResource(R.drawable.button_bg_good);
-                            }else if(messages[2].toString().equals("1")){
+                            }else if(messages[40].toString().equals("1")){
                                 sh2.setBackgroundResource(R.drawable.button_bg_yellow);
                             }else{
                                 sh2.setBackgroundResource(R.drawable.button_bg_bad);
                             }
-                            if (messages[3].toString().equals("1")){
+                            if (messages[41].toString().equals("1")){
                                 sh3.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
                                 sh3.setBackgroundResource(R.drawable.button_bg_bad);
                             }
-                            if (messages[4].toString().equals("1")){
+                            if (messages[42].toString().equals("1")){
                                 sh4.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
                                 sh4.setBackgroundResource(R.drawable.button_bg_bad);
                             }
-                            if (messages[5].toString().equals("1")){
+                            if (messages[43].toString().equals("1")){
                                 sh5.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
                                 sh5.setBackgroundResource(R.drawable.button_bg_bad);
                             }
-                            if (messages[6].toString().equals("1")){
+                            if (messages[44].toString().equals("1")){
                                 sh6.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
                                 sh6.setBackgroundResource(R.drawable.button_bg_bad);
                             }
-                            if (messages[7].toString().equals("3")){
+                            if (messages[45].toString().equals("3")){
                                 sh7.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
                                 sh7.setBackgroundResource(R.drawable.button_bg_bad);
                             }
-                            if (messages[8].toString().equals("2")){
+                            if (messages[46].toString().equals("2")){
                                 sh8.setBackgroundResource(R.drawable.button_bg_bad);
                             }else{
                                 sh8.setBackgroundResource(R.drawable.button_bg_good);
                             }
-                            if (messages[9].toString().equals("1")){
+                            if (messages[47].toString().equals("1")){
                                 sh9.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
                                 sh9.setBackgroundResource(R.drawable.button_bg_bad);
                             }
-                            if (messages[10].toString().equals("1")){
+                            if (messages[48].toString().equals("1")){
                                 sh10.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
                                 sh10.setBackgroundResource(R.drawable.button_bg_bad);
                             }
 
-                            mx1.setText(messages[11].toString());
-                            xfm.setText(messages[12].toString());
-                            imbl.setText(messages[13].toString());
-                            xas.setText(messages[14].toString());
-                            swax.setText(messages[15].toString());
-                            sxr.setText(messages[16].toString());
+                            mx1.setText(messages[49].toString());
+                            xfm.setText(messages[50].toString());
+                            imbl.setText(messages[51].toString());
+                            xas.setText(messages[52].toString());
+                            swax.setText(messages[53].toString());
+                            sxr.setText(messages[54].toString());
                         }
                     }
                 });
