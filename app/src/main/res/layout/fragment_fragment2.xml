@@ -59,9 +59,9 @@
         android:id="@+id/textView17"
         android:textColor="@color/title_text"
         android:paddingLeft="20dp"
+        android:layout_marginTop="31dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/k1V" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
         android:id="@+id/gV"
         android:textAlignment="textEnd"
         android:paddingRight="20dp"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/textView17"
         android:layout_alignEnd="@+id/k1V"
         android:layout_toEndOf="@+id/textView5" />
 
@@ -171,5 +171,14 @@
         android:id="@+id/ltbQ"
         android:layout_alignTop="@+id/ltbV"
         android:layout_alignStart="@+id/linQ" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="--------Linac RF--------"
+        android:id="@+id/textView27"
+        android:textColor="@color/title_text"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

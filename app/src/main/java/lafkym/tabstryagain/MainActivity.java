@@ -65,10 +65,11 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
 
     };
 
+    //Control room computer IP: 10.6.11.15
     private void connectWebSocket() {
         URI uri;
         try {
-            uri = new URI("ws://10.6.0.152:6000");
+            uri = new URI("ws://10.6.11.15:6000");
                   } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -306,44 +307,44 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                                 gV.setTextColor(getResources().getColor(R.color.good_PV));
                             }
                             if (messages[20].toString().equals("0")){
-                                linS.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                linS.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
-                                linS.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                linS.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[21].toString().equals("0")){
-                                linH.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                linH.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
-                                linH.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                linH.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[22].toString().equals("0")){
-                                linV.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                linV.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
-                                linV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                linV.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[23].toString().equals("0")){
-                                linQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                linQ.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
-                                linQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                linQ.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[24].toString().equals("3")){
-                                ltbD.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                ltbD.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
-                                ltbD.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                ltbD.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[25].toString().equals("2")){
-                                ltbH.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                ltbH.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
-                                ltbH.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                ltbH.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[26].toString().equals("4")){
-                                ltbV.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                ltbV.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
-                                ltbV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                ltbV.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[27].toString().equals("11")){
-                                ltbQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                ltbQ.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
-                                ltbQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                ltbQ.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                         }
                         else if ((pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment3"))) {
@@ -365,44 +366,45 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                                 rmps.setTextColor(getResources().getColor(R.color.bad_PV));
                             }
                             if (messages[31].toString().equals("3")) {
-                                booD.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                booD.setBackgroundResource(R.drawable.button_bg_good);
                             } else {
-                                booD.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                booD.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[32].toString().equals("2")) {
-                                booQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                booQ.setBackgroundResource(R.drawable.button_bg_good);
                             } else {
-                                booQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                booQ.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[33].toString().equals("2")) {
-                                booS.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                booS.setBackgroundResource(R.drawable.button_bg_good);
                             } else {
-                                booS.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                booS.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[34].toString().equals("12")) {
-                                booH.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                booH.setBackgroundResource(R.drawable.button_bg_good);
                             } else {
-                                booH.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                booH.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[35].toString().equals("12")) {
-                                booV.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                booV.setBackgroundResource(R.drawable.button_bg_good);
                             } else {
-                                booV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                booV.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[36].toString().equals("6")) {
-                                btsD.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                btsD.setBackgroundResource(R.drawable.button_bg_good);
                             } else {
-                                btsD.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                btsD.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[37].toString().equals("12")) {
-                                btsQ.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                btsQ.setBackgroundResource(R.drawable.button_bg_good);
                             } else {
-                                btsQ.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                btsQ.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                             if (messages[38].toString().equals("5")) {
-                                btsV.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                //btsV.setBackgroundColor(getResources().getColor(R.color.good_PV));
+                                btsV.setBackgroundResource(R.drawable.button_bg_good);
                             } else {
-                                btsV.setBackgroundColor(getResources().getColor(R.color.bad_PV));
+                                btsV.setBackgroundResource(R.drawable.button_bg_bad);
                             }
                         }
                         else if ((pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment4"))) {
