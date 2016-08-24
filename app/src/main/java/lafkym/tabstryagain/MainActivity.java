@@ -3,6 +3,7 @@ package lafkym.tabstryagain;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
+import org.w3c.dom.Text;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
     private String TAG = this.getClass().getSimpleName();
     private Handler handler;
 
-    public String alldata[];
+    private Boolean topUpCheck = false;
 
 
 
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
     private void connectWebSocket() {
         URI uri;
         try {
-            uri = new URI("ws://10.6.0.138:6000");
+            uri = new URI("ws://10.6.0.152:6000");
                   } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
             public void onMessage(String s) {
                 final String message = s;
                 final String messages[] = message.split("::");
-                //final Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                final Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -150,20 +152,38 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                         TextView xas = (TextView)findViewById(R.id.xasGap);
                         TextView swax = (TextView)findViewById(R.id.swaxGap);
                         TextView sxr = (TextView)findViewById(R.id.sxrGap);
+                        TextView ir = (TextView)findViewById(R.id.irGap);
 
-                        //Change tab colors for Linac/Booster if there's a problem
+                        //Log.d("test",messages[55]);
+                        //Check and make sure we haven't dropped out of topup.  If we have, vibrate phone
 
+                        if ((messages[55].toString().contains("UserBeam Top Up")) & (messages[3]).toString().contains("Top Up") & topUpCheck){
+                            topUpCheck = true;
+                        }else if ((messages[55].toString().contains("UserBeam Top Up")) & !(messages[3]).toString().contains("Top Up") & topUpCheck){
+                            topUpCheck = false;
+                            v.vibrate(100);
+                        }else if ((messages[55].toString().contains("UserBeam Top Up")) & !(messages[3]).toString().contains("Top Up") & !topUpCheck){
+                            topUpCheck = false;
+                        }else if ((messages[55].toString().contains("UserBeam Top Up")) & (messages[3]).toString().contains("Top Up") & !topUpCheck) {
+                            topUpCheck = true;
+                        }
+
+                        //Haven't found a way to change the tab title text dynamically
+                        /*
                         if (messages[0].toString().contains("bad1")){
-                            tabTitles.set(1,"Linac ALERT");
+                            tabLayout.
+                            tv.setText("hello");
                         }else{
-                            tabTitles.set(1,"Linac");
+                            //tv.setTextColor(Color.GREEN);
+                            tv.setText("sup");
                         }
 
                         if (messages[0].toString().contains("bad2")){
-                            tabTitles.set(2,"Booster ALERT");
+                            tabLayout.
                         }else{
-                            tabTitles.set(2,"Booster");
-                        }
+                            tabTitles.set(2, "boster");
+                            Log.d("error",tabTitles.toString());
+                        }*/
                         //First conditional parses the returning message for which tab to update
                         if ((pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment1"))) {
                             Log.d("UPDATING","Updating Main Tab");
@@ -393,10 +413,13 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                             }
                             if (messages[40].toString().equals("3")){
                                 sh2.setBackgroundResource(R.drawable.button_bg_good);
+                                ir.setText("Inserted");
                             }else if(messages[40].toString().equals("1")){
                                 sh2.setBackgroundResource(R.drawable.button_bg_yellow);
+                                ir.setText("Moving");
                             }else{
                                 sh2.setBackgroundResource(R.drawable.button_bg_bad);
+                                ir.setText("Out");
                             }
                             if (messages[41].toString().equals("1")){
                                 sh3.setBackgroundResource(R.drawable.button_bg_good);
@@ -418,7 +441,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                             }else{
                                 sh6.setBackgroundResource(R.drawable.button_bg_bad);
                             }
-                            if (messages[45].toString().equals("3")){
+                            if (messages[45].toString().equals("1")){
                                 sh7.setBackgroundResource(R.drawable.button_bg_good);
                             }else{
                                 sh7.setBackgroundResource(R.drawable.button_bg_bad);
@@ -471,6 +494,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
         handler.removeCallbacks(updateGUI);
     }
 
+    /*
     @Override
     protected void onPause(){
         super.onPause();
@@ -486,6 +510,7 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
         connectWebSocket();
         handler.postDelayed(updateGUI,1000);
     }
+    */
 
     private XYPlot plot;
 
@@ -520,8 +545,8 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
         // This method ensures that tab selection events update the ViewPager and page changes update the selected tab.
         tabLayout.setupWithViewPager(viewPager);
 
-        //connectWebSocket();
-        //handler.postDelayed(updateGUI,1000);
+        connectWebSocket();
+        handler.postDelayed(updateGUI,1000);
     }
 
     @Override
