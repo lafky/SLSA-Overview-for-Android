@@ -35,6 +35,7 @@ import com.androidplot.xy.XYSeries;
 import com.androidplot.xy.*;
 import java.util.Arrays;
 import android.graphics.DashPathEffect;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity implements TabsListener {
@@ -364,7 +365,6 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
                 btsQ.setBackgroundResource(R.drawable.button_bg_bad);
             }
             if (messages[38].toString().equals("5")) {
-                //btsV.setBackgroundColor(getResources().getColor(R.color.good_PV));
                 btsV.setBackgroundResource(R.drawable.button_bg_good);
             } else {
                 btsV.setBackgroundResource(R.drawable.button_bg_bad);
@@ -442,6 +442,9 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
             try{
                 mWebSocketClient.send("everything");
             }catch(Exception e){
+                /*
+                Toast.makeText(MainActivity.this, "Unable to connect to server!",
+                        Toast.LENGTH_LONG).show();*/
                 Log.d("debug","Unable to connect");
             }
             handler.postDelayed(this,1000);  // Run this again in 1 second
