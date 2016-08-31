@@ -158,6 +158,22 @@ public class MainActivity extends AppCompatActivity {
 
             //Some PVs change colors when they're alarming, etc...
             bC.setText(messages[1]);
+            lT.setText(messages[2]);
+            bM.setText(messages[3]);
+            nS.setText(messages[4]);
+            uX.setText(messages[5]);
+            uY.setText(messages[6]);
+            b2sEff.setText(messages[7]);
+            booCurr.setText(messages[8]);
+            ls1.setText(messages[9]);
+            ls2.setText(messages[10]);
+            xSize.setText(messages[11]);
+            ySize.setText(messages[12]);
+            xPos.setText(messages[13]);
+            yPos.setText(messages[14]);
+            xSTD.setText(messages[15]);
+            ySTD.setText(messages[16]);
+
             if (Double.parseDouble(bC.getText().toString()) > 199.9){
                 bC.setTextColor(getResources().getColor(R.color.good_PV));
             } else if ((Double.parseDouble(bC.getText().toString()) <= 199.9) &&  (Double.parseDouble(bC.getText().toString()) > 180)) {
@@ -166,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
                 bC.setTextColor(getResources().getColor(R.color.bad_PV));
             }
 
-            lT.setText(messages[2]);
             if (Double.parseDouble(lT.getText().toString()) > 24){
                 lT.setTextColor(getResources().getColor(R.color.good_PV));
             } else if ((Double.parseDouble(lT.getText().toString()) <= 24) &&  (Double.parseDouble(lT.getText().toString()) > 20)) {
@@ -175,7 +190,6 @@ public class MainActivity extends AppCompatActivity {
                 lT.setTextColor(getResources().getColor(R.color.bad_PV));
             }
 
-            ls1.setText(messages[9]);
             if (Double.parseDouble(ls1.getText().toString()) > 90){
                 ls1.setTextColor(getResources().getColor(R.color.good_PV));
             } else if ((Double.parseDouble(lT.getText().toString()) <= 85) &&  (Double.parseDouble(lT.getText().toString()) > 60)) {
@@ -184,7 +198,6 @@ public class MainActivity extends AppCompatActivity {
                 ls1.setTextColor(getResources().getColor(R.color.bad_PV));
             }
 
-            ls2.setText(messages[10]);
             if (Double.parseDouble(ls2.getText().toString()) > 90){
                 ls2.setTextColor(getResources().getColor(R.color.good_PV));
             } else if ((Double.parseDouble(lT.getText().toString()) <= 85) &&  (Double.parseDouble(lT.getText().toString()) > 60)) {
@@ -193,7 +206,6 @@ public class MainActivity extends AppCompatActivity {
                 ls2.setTextColor(getResources().getColor(R.color.bad_PV));
             }
 
-            xSize.setText(messages[11]);
             if (Double.parseDouble(xSize.getText().toString()) < 320){
                 xSize.setTextColor(getResources().getColor(R.color.good_PV));
             } else if ((Double.parseDouble(xSize.getText().toString()) >= 320) &&  (Double.parseDouble(xSize.getText().toString()) < 335)) {
@@ -202,7 +214,6 @@ public class MainActivity extends AppCompatActivity {
                 xSize.setTextColor(getResources().getColor(R.color.bad_PV));
             }
 
-            ySize.setText(messages[12]);
             if (Double.parseDouble(ySize.getText().toString()) < 280){
                 ySize.setTextColor(getResources().getColor(R.color.good_PV));
             } else if ((Double.parseDouble(ySize.getText().toString()) >= 280) &&  (Double.parseDouble(ySize.getText().toString()) < 290)) {
@@ -211,7 +222,6 @@ public class MainActivity extends AppCompatActivity {
                 ySize.setTextColor(getResources().getColor(R.color.bad_PV));
             }
 
-            xSTD.setText(messages[15]);
             if (Double.parseDouble(xSTD.getText().toString()) < .5){
                 xSTD.setTextColor(getResources().getColor(R.color.good_PV));
             } else if ((Double.parseDouble(xSTD.getText().toString()) >= .5) &&  (Double.parseDouble(xSTD.getText().toString()) < 1)) {
@@ -220,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
                 xSTD.setTextColor(getResources().getColor(R.color.bad_PV));
             }
 
-            ySTD.setText(messages[16]);
             if (Double.parseDouble(ySTD.getText().toString()) < 1){
                 ySTD.setTextColor(getResources().getColor(R.color.good_PV));
             } else if ((Double.parseDouble(ySTD.getText().toString()) >= 1) &&  (Double.parseDouble(ySTD.getText().toString()) < 1.5)) {
@@ -229,15 +238,6 @@ public class MainActivity extends AppCompatActivity {
                 ySTD.setTextColor(getResources().getColor(R.color.bad_PV));
             }
 
-            //Neutral PVs don't change colors
-            bM.setText(messages[3]);
-            nS.setText(messages[4]);
-            uX.setText(messages[5]);
-            uY.setText(messages[6]);
-            b2sEff.setText(messages[7]);
-            booCurr.setText(messages[8]);
-            xPos.setText(messages[13]);
-            yPos.setText(messages[14]);
             //Need to add a "+" if the value for the position is positive
             if (Double.parseDouble(messages[14].toString()) > 0){
                 yPos.setText("+"+messages[14]);
@@ -374,6 +374,15 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else if ((pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment4"))) {
+            Log.d("UPDATING:","Updating SR Tab");
+
+            mx1.setText(messages[49]);
+            xfm.setText(messages[50]);
+            imbl.setText(messages[51]);
+            xas.setText(messages[52]);
+            swax.setText(messages[53]);
+            sxr.setText(messages[54]);
+
             if (messages[39].equals("2")){
                 sh1.setBackgroundResource(R.drawable.button_bg_good);
             }else{
@@ -429,15 +438,6 @@ public class MainActivity extends AppCompatActivity {
             }else{
                 sh10.setBackgroundResource(R.drawable.button_bg_bad);
             }
-
-            mx1.setText(messages[49]);
-            xfm.setText(messages[50]);
-            imbl.setText(messages[51]);
-            xas.setText(messages[52]);
-            swax.setText(messages[53]);
-            sxr.setText(messages[54]);
-
-            Log.d("UPDATING:","Updating SR Tab");
         }
     }
 
