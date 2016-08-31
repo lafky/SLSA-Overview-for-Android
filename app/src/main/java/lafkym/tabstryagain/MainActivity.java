@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -38,7 +39,7 @@ import android.graphics.DashPathEffect;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity implements TabsListener {
+public class MainActivity extends AppCompatActivity {
     private List<Fragment> fragmentList = new ArrayList<>();
     private List<String> tabTitles = new ArrayList<>();
     private MyPagerAdapter pagerAdapter;
@@ -122,14 +123,14 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
 
         //Check and make sure we haven't dropped out of topup.  If we have, vibrate phone
 
-        if ((messages[55].toString().contains("UserBeam Top Up")) & (messages[3]).toString().contains("Top Up") & topUpCheck){
+        if (messages[55].contains("UserBeam Top Up") & messages[3].contains("Top Up") & topUpCheck){
             topUpCheck = true;
-        }else if ((messages[55].toString().contains("UserBeam Top Up")) & !(messages[3]).toString().contains("Top Up") & topUpCheck){
+        }else if (messages[55].contains("UserBeam Top Up") & !messages[3].contains("Top Up") & topUpCheck){
             topUpCheck = false;
             v.vibrate(100);
-        }else if ((messages[55].toString().contains("UserBeam Top Up")) & !(messages[3]).toString().contains("Top Up") & !topUpCheck){
+        }else if (messages[55].contains("UserBeam Top Up") & !messages[3].contains("Top Up") & !topUpCheck){
             topUpCheck = false;
-        }else if ((messages[55].toString().contains("UserBeam Top Up")) & (messages[3]).toString().contains("Top Up") & !topUpCheck) {
+        }else if (messages[55].contains("UserBeam Top Up") & messages[3].contains("Top Up") & !topUpCheck) {
             topUpCheck = true;
         }
 
@@ -270,42 +271,42 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
             } else{
                 gV.setTextColor(getResources().getColor(R.color.good_PV));
             }
-            if (messages[20].toString().equals("0")){
+            if (messages[20].equals("0")){
                 linS.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 linS.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[21].toString().equals("0")){
+            if (messages[21].equals("0")){
                 linH.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 linH.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[22].toString().equals("0")){
+            if (messages[22].equals("0")){
                 linV.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 linV.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[23].toString().equals("0")){
+            if (messages[23].equals("0")){
                 linQ.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 linQ.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[24].toString().equals("3")){
+            if (messages[24].equals("3")){
                 ltbD.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 ltbD.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[25].toString().equals("2")){
+            if (messages[25].equals("2")){
                 ltbH.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 ltbH.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[26].toString().equals("4")){
+            if (messages[26].equals("4")){
                 ltbV.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 ltbV.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[27].toString().equals("11")){
+            if (messages[27].equals("11")){
                 ltbQ.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 ltbQ.setBackgroundResource(R.drawable.button_bg_bad);
@@ -315,124 +316,124 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
             Log.d("UPDATING", "Updating Booster Tab");
             freqdif.setText(messages[29]);
 
-            if (messages[28].toString().equals("1")) {
+            if (messages[28].equals("1")) {
                 borf.setText("Good");
                 borf.setTextColor(getResources().getColor(R.color.good_PV));
             } else {
                 borf.setText("Bad");
                 borf.setTextColor(getResources().getColor(R.color.bad_PV));
             }
-            if (messages[30].toString().equals("16")) {
+            if (messages[30].equals("16")) {
                 rmps.setText(("Good"));
                 rmps.setTextColor(getResources().getColor(R.color.good_PV));
             } else {
                 rmps.setText(("Bad"));
                 rmps.setTextColor(getResources().getColor(R.color.bad_PV));
             }
-            if (messages[31].toString().equals("3")) {
+            if (messages[31].equals("3")) {
                 booD.setBackgroundResource(R.drawable.button_bg_good);
             } else {
                 booD.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[32].toString().equals("2")) {
+            if (messages[32].equals("2")) {
                 booQ.setBackgroundResource(R.drawable.button_bg_good);
             } else {
                 booQ.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[33].toString().equals("2")) {
+            if (messages[33].equals("2")) {
                 booS.setBackgroundResource(R.drawable.button_bg_good);
             } else {
                 booS.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[34].toString().equals("12")) {
+            if (messages[34].equals("12")) {
                 booH.setBackgroundResource(R.drawable.button_bg_good);
             } else {
                 booH.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[35].toString().equals("12")) {
+            if (messages[35].equals("12")) {
                 booV.setBackgroundResource(R.drawable.button_bg_good);
             } else {
                 booV.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[36].toString().equals("6")) {
+            if (messages[36].equals("6")) {
                 btsD.setBackgroundResource(R.drawable.button_bg_good);
             } else {
                 btsD.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[37].toString().equals("12")) {
+            if (messages[37].equals("12")) {
                 btsQ.setBackgroundResource(R.drawable.button_bg_good);
             } else {
                 btsQ.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[38].toString().equals("5")) {
+            if (messages[38].equals("5")) {
                 btsV.setBackgroundResource(R.drawable.button_bg_good);
             } else {
                 btsV.setBackgroundResource(R.drawable.button_bg_bad);
             }
         }
         else if ((pagerAdapter.getCurrentFragment().toString().toLowerCase().contains("fragment4"))) {
-            if (messages[39].toString().equals("2")){
+            if (messages[39].equals("2")){
                 sh1.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 sh1.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[40].toString().equals("3")){
+            if (messages[40].equals("3")){
                 sh2.setBackgroundResource(R.drawable.button_bg_good);
                 ir.setText("Inserted");
-            }else if(messages[40].toString().equals("1")){
+            }else if(messages[40].equals("1")){
                 sh2.setBackgroundResource(R.drawable.button_bg_yellow);
                 ir.setText("Moving");
             }else{
                 sh2.setBackgroundResource(R.drawable.button_bg_bad);
                 ir.setText("Out");
             }
-            if (messages[41].toString().equals("1")){
+            if (messages[41].equals("1")){
                 sh3.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 sh3.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[42].toString().equals("1")){
+            if (messages[42].equals("1")){
                 sh4.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 sh4.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[43].toString().equals("1")){
+            if (messages[43].equals("1")){
                 sh5.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 sh5.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[44].toString().equals("1")){
+            if (messages[44].equals("1")){
                 sh6.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 sh6.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[45].toString().equals("1")){
+            if (messages[45].equals("1")){
                 sh7.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 sh7.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[46].toString().equals("2")){
+            if (messages[46].equals("2")){
                 sh8.setBackgroundResource(R.drawable.button_bg_bad);
             }else{
                 sh8.setBackgroundResource(R.drawable.button_bg_good);
             }
-            if (messages[47].toString().equals("1")){
+            if (messages[47].equals("1")){
                 sh9.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 sh9.setBackgroundResource(R.drawable.button_bg_bad);
             }
-            if (messages[48].toString().equals("1")){
+            if (messages[48].equals("1")){
                 sh10.setBackgroundResource(R.drawable.button_bg_good);
             }else{
                 sh10.setBackgroundResource(R.drawable.button_bg_bad);
             }
 
-            mx1.setText(messages[49].toString());
-            xfm.setText(messages[50].toString());
-            imbl.setText(messages[51].toString());
-            xas.setText(messages[52].toString());
-            swax.setText(messages[53].toString());
-            sxr.setText(messages[54].toString());
+            mx1.setText(messages[49]);
+            xfm.setText(messages[50]);
+            imbl.setText(messages[51]);
+            xas.setText(messages[52]);
+            swax.setText(messages[53]);
+            sxr.setText(messages[54]);
         }
     }
 
@@ -442,10 +443,11 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
             try{
                 mWebSocketClient.send("everything");
             }catch(Exception e){
-                /*
-                Toast.makeText(MainActivity.this, "Unable to connect to server!",
-                        Toast.LENGTH_LONG).show();*/
+
+                //Toast.makeText(MainActivity.this, "Connection to server lost!", Toast.LENGTH_SHORT).show();
+                //Need to make it smart enough to know when the connection has been lost and reconnected.
                 Log.d("debug","Unable to connect");
+                //connectWebSocket();
             }
             handler.postDelayed(this,1000);  // Run this again in 1 second
 
@@ -541,6 +543,8 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
         tabTitles.add("Booster");
         tabTitles.add("Storage Ring");
 
+
+
         // Set a toolbar which will replace the action bar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -557,16 +561,6 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
 
         connectWebSocket();
         handler.postDelayed(updateGUI,1000);
-    }
-
-    @Override
-    public void onTabAdded() {
-        pagerAdapter.addTab(Fragment1.newInstance(), "Tab " + (tabTitles.size() + 1));
-    }
-
-    @Override
-    public void onTabRemoved() {
-        pagerAdapter.removeTab(tabTitles.size()-1);
     }
 
     private class MyPagerAdapter extends FragmentStatePagerAdapter {
@@ -613,18 +607,5 @@ public class MainActivity extends AppCompatActivity implements TabsListener {
             return tabTitles.get(position);
         }
 
-        public void addTab(Fragment fragment, String tabTitle) {
-            fragmentList.add(fragment);
-            tabTitles.add(tabTitle);
-            notifyDataSetChanged();
-        }
-
-        public void removeTab(int tabPosition) {
-            if (!fragmentList.isEmpty()) {
-                fragmentList.remove(tabPosition);
-                tabTitles.remove(tabPosition);
-                notifyDataSetChanged();
-            }
-        }
     }
 }

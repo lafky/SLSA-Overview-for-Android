@@ -19,28 +19,12 @@ import java.net.URISyntaxException;
 
 public class Fragment1 extends Fragment {
 
-    private TabsListener tabsListener;
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment Fragment1.
-     */
     public static Fragment1 newInstance() {
         return new Fragment1();
     }
 
     public Fragment1() {
         // Required empty public constructor
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-
-        if (activity instanceof TabsListener) {
-            tabsListener = (TabsListener) activity;
-        }
     }
 
     @Override
