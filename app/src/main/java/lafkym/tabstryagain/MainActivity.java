@@ -50,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Boolean topUpCheck = false;
 
-    public String messages[];
+    public static String[] messages;
+
+    //Switches to true after messages[] has values
+    public static Boolean a = false;
 
     private void updateGUIMethod(){
 
@@ -74,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         TextView yPos = (TextView)findViewById(R.id.yPos);
         TextView xSTD = (TextView)findViewById(R.id.xSTD);
         TextView ySTD = (TextView)findViewById(R.id.ySTD);
-
         //Linac
         TextView k1v = (TextView)findViewById(R.id.k1V);
         TextView k2v = (TextView)findViewById(R.id.k2V);
@@ -434,6 +436,8 @@ public class MainActivity extends AppCompatActivity {
             xas.setText(messages[52]);
             swax.setText(messages[53]);
             sxr.setText(messages[54]);
+
+            Log.d("UPDATING:","Updating SR Tab");
         }
     }
 
@@ -476,6 +480,8 @@ public class MainActivity extends AppCompatActivity {
             public void onMessage(String s) {
                 final String message = s;
                 messages = message.split("::");
+                //Let the other views display correctly upon opening
+                a = true;
 
                 runOnUiThread(new Runnable() {
                     @Override
