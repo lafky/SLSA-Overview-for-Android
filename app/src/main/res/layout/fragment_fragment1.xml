@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Mode:"
+        android:text="Fill Mode:"
         android:id="@+id/textView3"
         android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true"
@@ -310,8 +310,8 @@
         android:text="            "
         android:id="@+id/xPos"
         android:textColor="@color/neutral_PV"
-        android:layout_alignTop="@+id/xSize"
-        android:layout_toEndOf="@+id/textView14" />
+        android:layout_above="@+id/textView16"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
