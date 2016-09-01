@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -175,67 +176,67 @@ public class MainActivity extends AppCompatActivity {
             ySTD.setText(messages[16]);
 
             if (Double.parseDouble(bC.getText().toString()) > 199.9){
-                bC.setTextColor(getResources().getColor(R.color.good_PV));
+                bC.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else if ((Double.parseDouble(bC.getText().toString()) <= 199.9) &&  (Double.parseDouble(bC.getText().toString()) > 180)) {
-                bC.setTextColor(getResources().getColor(R.color.warn_PV));
+                bC.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.warn_PV));
             } else{
-                bC.setTextColor(getResources().getColor(R.color.bad_PV));
+                bC.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
 
             if (Double.parseDouble(lT.getText().toString()) > 24){
-                lT.setTextColor(getResources().getColor(R.color.good_PV));
+                lT.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else if ((Double.parseDouble(lT.getText().toString()) <= 24) &&  (Double.parseDouble(lT.getText().toString()) > 20)) {
-                lT.setTextColor(getResources().getColor(R.color.warn_PV));
+                lT.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.warn_PV));
             } else{
-                lT.setTextColor(getResources().getColor(R.color.bad_PV));
+                lT.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
 
             if (Double.parseDouble(ls1.getText().toString()) > 90){
-                ls1.setTextColor(getResources().getColor(R.color.good_PV));
+                ls1.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else if ((Double.parseDouble(lT.getText().toString()) <= 85) &&  (Double.parseDouble(lT.getText().toString()) > 60)) {
-                ls1.setTextColor(getResources().getColor(R.color.warn_PV));
+                ls1.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.warn_PV));
             } else{
-                ls1.setTextColor(getResources().getColor(R.color.bad_PV));
+                ls1.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
 
             if (Double.parseDouble(ls2.getText().toString()) > 90){
-                ls2.setTextColor(getResources().getColor(R.color.good_PV));
+                ls2.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else if ((Double.parseDouble(lT.getText().toString()) <= 85) &&  (Double.parseDouble(lT.getText().toString()) > 60)) {
-                ls2.setTextColor(getResources().getColor(R.color.warn_PV));
+                ls2.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.warn_PV));
             } else{
-                ls2.setTextColor(getResources().getColor(R.color.bad_PV));
+                ls2.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
 
             if (Double.parseDouble(xSize.getText().toString()) < 320){
-                xSize.setTextColor(getResources().getColor(R.color.good_PV));
+                xSize.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else if ((Double.parseDouble(xSize.getText().toString()) >= 320) &&  (Double.parseDouble(xSize.getText().toString()) < 335)) {
-                xSize.setTextColor(getResources().getColor(R.color.warn_PV));
+                xSize.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.warn_PV));
             } else{
-                xSize.setTextColor(getResources().getColor(R.color.bad_PV));
+                xSize.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
 
             if (Double.parseDouble(ySize.getText().toString()) < 280){
-                ySize.setTextColor(getResources().getColor(R.color.good_PV));
+                ySize.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else if ((Double.parseDouble(ySize.getText().toString()) >= 280) &&  (Double.parseDouble(ySize.getText().toString()) < 290)) {
-                ySize.setTextColor(getResources().getColor(R.color.warn_PV));
+                ySize.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.warn_PV));
             } else{
-                ySize.setTextColor(getResources().getColor(R.color.bad_PV));
+                ySize.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
 
             if (Double.parseDouble(xSTD.getText().toString()) < .5){
-                xSTD.setTextColor(getResources().getColor(R.color.good_PV));
+                xSTD.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else if ((Double.parseDouble(xSTD.getText().toString()) >= .5) &&  (Double.parseDouble(xSTD.getText().toString()) < 1)) {
-                xSTD.setTextColor(getResources().getColor(R.color.warn_PV));
+                xSTD.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.warn_PV));
             } else{
-                xSTD.setTextColor(getResources().getColor(R.color.bad_PV));
+                xSTD.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
 
             if (Double.parseDouble(ySTD.getText().toString()) < 1){
-                ySTD.setTextColor(getResources().getColor(R.color.good_PV));
+                ySTD.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else if ((Double.parseDouble(ySTD.getText().toString()) >= 1) &&  (Double.parseDouble(ySTD.getText().toString()) < 1.5)) {
-                ySTD.setTextColor(getResources().getColor(R.color.warn_PV));
+                ySTD.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.warn_PV));
             } else{
-                ySTD.setTextColor(getResources().getColor(R.color.bad_PV));
+                ySTD.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
 
             //Need to add a "+" if the value for the position is positive
@@ -259,19 +260,19 @@ public class MainActivity extends AppCompatActivity {
 
             //Set PV colors if they're not alarming
             if (Double.parseDouble(k1v.getText().toString()) < 34){
-                k1v.setTextColor(getResources().getColor(R.color.bad_PV));
+                k1v.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else{
-                k1v.setTextColor(getResources().getColor(R.color.good_PV));
+                k1v.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
             if (Double.parseDouble(k2v.getText().toString()) < 34){
-                k2v.setTextColor(getResources().getColor(R.color.bad_PV));
+                k2v.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else{
-                k2v.setTextColor(getResources().getColor(R.color.good_PV));
+                k2v.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
             if (Double.parseDouble(gV.getText().toString()) < 89){
-                gV.setTextColor(getResources().getColor(R.color.bad_PV));
+                gV.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             } else{
-                gV.setTextColor(getResources().getColor(R.color.good_PV));
+                gV.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             }
             if (messages[20].equals("0")){
                 linS.setBackgroundResource(R.drawable.button_bg_good);
@@ -320,17 +321,18 @@ public class MainActivity extends AppCompatActivity {
 
             if (messages[28].equals("1")) {
                 borf.setText("Good");
-                borf.setTextColor(getResources().getColor(R.color.good_PV));
+                //borf.setTextColor(getResources().getColor(R.color.good_PV));
+                borf.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else {
                 borf.setText("Bad");
-                borf.setTextColor(getResources().getColor(R.color.bad_PV));
+                borf.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
             if (messages[30].equals("16")) {
                 rmps.setText(("Good"));
-                rmps.setTextColor(getResources().getColor(R.color.good_PV));
+                rmps.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             } else {
                 rmps.setText(("Bad"));
-                rmps.setTextColor(getResources().getColor(R.color.bad_PV));
+                rmps.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
             }
             if (messages[31].equals("3")) {
                 booD.setBackgroundResource(R.drawable.button_bg_good);
