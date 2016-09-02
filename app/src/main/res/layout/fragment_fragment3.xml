@@ -129,7 +129,7 @@
         android:text="    V    "
         android:id="@+id/booV"
         android:layout_below="@+id/textView22"
-        android:layout_toEndOf="@+id/textView24" />
+        android:layout_toEndOf="@+id/booH" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -138,7 +138,7 @@
         android:text="    H    "
         android:id="@+id/booH"
         android:layout_below="@+id/textView22"
-        android:layout_alignStart="@+id/btsV" />
+        android:layout_toEndOf="@+id/booS" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -156,7 +156,7 @@
         android:text="    D    "
         android:id="@+id/btsD"
         android:layout_below="@+id/textView24"
-        android:layout_alignStart="@+id/booQ" />
+        android:layout_toStartOf="@+id/btsQ" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -165,7 +165,7 @@
         android:text="    Q    "
         android:id="@+id/btsQ"
         android:layout_below="@+id/textView24"
-        android:layout_toEndOf="@+id/btsD" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -174,7 +174,7 @@
         android:text="    V    "
         android:id="@+id/btsV"
         android:layout_below="@+id/textView24"
-        android:layout_alignEnd="@+id/textView24" />
+        android:layout_toEndOf="@+id/btsQ" />
 
     <TextView
         android:layout_width="wrap_content"
