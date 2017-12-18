@@ -1,6 +1,7 @@
 package lafkym.tabstryagain;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,25 +11,7 @@ import java.lang.reflect.Array;
 
 public class Fragment2 extends Fragment {
 
-    public static Fragment2 newInstance() {
-        return new Fragment2();
-    }
-
-    public Fragment2() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fragment2, container, false);
+    private void intialize (View view){
 
         TextView k1v = (TextView)view.findViewById(R.id.k1V);
         TextView k2v = (TextView)view.findViewById(R.id.k2V);
@@ -48,19 +31,19 @@ public class Fragment2 extends Fragment {
             k2v.setText(MainActivity.messages[18]);
             gV.setText(MainActivity.messages[19]);
             if (Double.parseDouble(k1v.getText().toString()) < 34){
-                k1v.setTextColor(getResources().getColor(R.color.bad_PV));
+                k1v.setTextColor(ContextCompat.getColor(getActivity().getApplicationContext(),R.color.bad_PV));
             } else{
-                k1v.setTextColor(getResources().getColor(R.color.good_PV));
+                k1v.setTextColor(ContextCompat.getColor(getActivity().getApplicationContext(),R.color.good_PV));
             }
             if (Double.parseDouble(k2v.getText().toString()) < 34){
-                k2v.setTextColor(getResources().getColor(R.color.bad_PV));
+                k2v.setTextColor(ContextCompat.getColor(getActivity().getApplicationContext(),R.color.bad_PV));
             } else{
-                k2v.setTextColor(getResources().getColor(R.color.good_PV));
+                k2v.setTextColor(ContextCompat.getColor(getActivity().getApplicationContext(),R.color.good_PV));
             }
             if (Double.parseDouble(gV.getText().toString()) < 89){
-                gV.setTextColor(getResources().getColor(R.color.bad_PV));
+                gV.setTextColor(ContextCompat.getColor(getActivity().getApplicationContext(),R.color.bad_PV));
             } else{
-                gV.setTextColor(getResources().getColor(R.color.good_PV));
+                gV.setTextColor(ContextCompat.getColor(getActivity().getApplicationContext(),R.color.good_PV));
             }
             if (MainActivity.messages[20].equals("0")){
                 linS.setBackgroundResource(R.drawable.button_bg_good);
@@ -104,6 +87,28 @@ public class Fragment2 extends Fragment {
             }
         }
 
+    }
+
+    public static Fragment2 newInstance() {
+        return new Fragment2();
+    }
+
+    public Fragment2() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_fragment2, container, false);
+        intialize(view);
         return view;
     }
 

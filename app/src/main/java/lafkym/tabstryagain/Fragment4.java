@@ -10,29 +10,7 @@ import android.widget.TextView;
 
 public class Fragment4 extends Fragment {
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     @return A new instance of fragment Fragment3.
-     */
-    public static Fragment4 newInstance() {
-        return new Fragment4();
-    }
-
-    public Fragment4() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fragment4, container, false);
+    private void initialize (View view){
 
         ImageButton sh1 = (ImageButton)view.findViewById(R.id.imageButton);
         ImageButton sh2 = (ImageButton)view.findViewById(R.id.imageButton2);
@@ -119,6 +97,27 @@ public class Fragment4 extends Fragment {
             sxr.setText(MainActivity.messages[54]);
         }
 
+    }
+
+    public static Fragment4 newInstance() {
+        return new Fragment4();
+    }
+
+    public Fragment4() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_fragment4, container, false);
+        initialize(view);
         return view;
     }
 

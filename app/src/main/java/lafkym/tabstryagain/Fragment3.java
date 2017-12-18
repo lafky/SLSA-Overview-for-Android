@@ -2,6 +2,7 @@ package lafkym.tabstryagain;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,29 +11,7 @@ import android.widget.TextView;
 
 public class Fragment3 extends Fragment {
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     @return A new instance of fragment Fragment3.
-     */
-    public static Fragment3 newInstance() {
-        return new Fragment3();
-    }
-
-    public Fragment3() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fragment3, container, false);
+    private void initialize (View view){
 
         TextView borf = (TextView)view.findViewById(R.id.borf);
         TextView freqdif = (TextView)view.findViewById(R.id.freqdif);
@@ -52,17 +31,17 @@ public class Fragment3 extends Fragment {
 
             if (MainActivity.messages[28].equals("1")) {
                 borf.setText("Good");
-                borf.setTextColor(getResources().getColor(R.color.good_PV));
+                borf.setTextColor(ContextCompat.getColor(getActivity().getApplicationContext(),R.color.good_PV));
             } else {
                 borf.setText("Bad");
-                borf.setTextColor(getResources().getColor(R.color.bad_PV));
+                borf.setTextColor(ContextCompat.getColor(getActivity().getApplicationContext(),R.color.bad_PV));
             }
             if (MainActivity.messages[30].equals("16")) {
                 rmps.setText(("Good"));
-                rmps.setTextColor(getResources().getColor(R.color.good_PV));
+                rmps.setTextColor(ContextCompat.getColor(getActivity().getApplicationContext(),R.color.good_PV));
             } else {
                 rmps.setText(("Bad"));
-                rmps.setTextColor(getResources().getColor(R.color.bad_PV));
+                rmps.setTextColor(ContextCompat.getColor(getActivity().getApplicationContext(),R.color.bad_PV));
             }
             if (MainActivity.messages[31].equals("3")) {
                 booD.setBackgroundResource(R.drawable.button_bg_good);
@@ -106,6 +85,27 @@ public class Fragment3 extends Fragment {
             }
         }
 
+    }
+
+    public static Fragment3 newInstance() {
+        return new Fragment3();
+    }
+
+    public Fragment3() {
+        // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_fragment3, container, false);
+        initialize(view);
         return view;
     }
 

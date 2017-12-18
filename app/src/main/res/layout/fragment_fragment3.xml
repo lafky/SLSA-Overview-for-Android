@@ -100,9 +100,8 @@
         android:textAlignment="center"
         android:paddingBottom="10dp"
         android:textColor="@color/title_text"
-        android:layout_marginTop="23dp"
-        android:layout_below="@+id/booS"
-        android:layout_alignStart="@+id/textView22" />
+        android:layout_alignStart="@+id/textView22"
+        android:layout_below="@+id/booS" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -184,5 +183,19 @@
         android:textColor="@color/title_text"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <com.androidplot.xy.XYPlot
+        style="@style/APDefacto.Dark"
+        android:id="@+id/plot"
+        ap:label="BORF:"
+        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        ap:labelTextColor="@color/title_text"
+        ap:paddingBottom="-30dp"
+        ap:paddingLeft="-25dp"
+        ap:paddingRight="-15dp"
+        ap:paddingTop="0dp"
+        android:layout_height="200dp" />
 
 </RelativeLayout>

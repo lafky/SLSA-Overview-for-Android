@@ -31,24 +31,25 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.androidplot.util.PixelUtils;
-import com.androidplot.xy.SimpleXYSeries;
-import com.androidplot.xy.XYSeries;
 import com.androidplot.xy.*;
-import java.util.Arrays;
-import android.graphics.DashPathEffect;
-import android.widget.Toast;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.support.v4.app.NotificationCompat;
+
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
 
 public class MainActivity extends AppCompatActivity {
     private List<Fragment> fragmentList = new ArrayList<>();
     private List<String> tabTitles = new ArrayList<>();
     private MyPagerAdapter pagerAdapter;
     private TabLayout tabLayout;
-
     private WebSocketClient mWebSocketClient;
     private Handler handler;
-
     private Boolean topUpCheck = false;
 
     public static String[] messages;
@@ -130,7 +131,22 @@ public class MainActivity extends AppCompatActivity {
             topUpCheck = true;
         }else if (messages[55].contains("UserBeam Top Up") & !messages[3].contains("Top Up") & topUpCheck){
             topUpCheck = false;
-            v.vibrate(100);
+            v.vibrate(1000);
+            /*I'll have to check and see if this works later.
+            NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.ic_launcher)
+                            .setContentTitle("SLSA Overview")
+                            .setContentText("TopUp Dropout!");
+
+            // Sets an ID for the notification
+            int mNotificationId = 001;
+            // Gets an instance of the NotificationManager service
+            NotificationManager mNotifyMgr =
+                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            // Builds the notification and issues it.
+            mNotifyMgr.notify(mNotificationId, mBuilder.build());
+            */
         }else if (messages[55].contains("UserBeam Top Up") & !messages[3].contains("Top Up") & !topUpCheck){
             topUpCheck = false;
         }else if (messages[55].contains("UserBeam Top Up") & messages[3].contains("Top Up") & !topUpCheck) {
@@ -260,14 +276,14 @@ public class MainActivity extends AppCompatActivity {
 
             //Set PV colors if they're not alarming
             if (Double.parseDouble(k1v.getText().toString()) < 34){
-                k1v.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
-            } else{
                 k1v.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
+            } else{
+                k1v.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             }
             if (Double.parseDouble(k2v.getText().toString()) < 34){
-                k2v.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
-            } else{
                 k2v.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
+            } else{
+                k2v.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.good_PV));
             }
             if (Double.parseDouble(gV.getText().toString()) < 89){
                 gV.setTextColor(ContextCompat.getColor(getApplicationContext(),R.color.bad_PV));
@@ -453,6 +469,12 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(MainActivity.this, "Connection to server lost!", Toast.LENGTH_SHORT).show();
                 //Need to make it smart enough to know when the connection has been lost and reconnected.
                 Log.d("debug","Unable to connect");
+
+                try {
+                    connectWebSocket();
+                }catch(Exception ee){
+                    Log.d("debug","Tried and failed to connect");
+                }
                 //connectWebSocket();
             }
             handler.postDelayed(this,1000);  // Run this again in 1 second
@@ -462,10 +484,11 @@ public class MainActivity extends AppCompatActivity {
     };
 
     //Control room computer IP: 10.6.11.15
+    //ioc 99 IP: 10.6.100.199
     private void connectWebSocket() {
         URI uri;
         try {
-            uri = new URI("ws://10.6.11.15:6000");
+            uri = new URI("ws://10.6.11.15:6000/");
                   } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -538,6 +561,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setIcon(R.drawable.ic_launcher);
 
         handler = new Handler();
 
